@@ -33,16 +33,20 @@ $ git checkout develop
 At that moment there were four branches. Below you may see files/folders in each branch and views of index.html files
 
 >(main)
+
 *readme.txt*
 
 >(images)
+
 *images/
    git.png 
 index.html
 readme.txt*
+
 [image with index.html results](screenshots/001.JPG)
 
 >(styles)
+
 *css/
    style.css
 index.html
@@ -50,6 +54,7 @@ readme.txt*
 [image with index.html results](screenshots/002.JPG)
 
 >(develop)
+
 *index.html
 readme.txt*
 
@@ -62,6 +67,7 @@ index.html
 readme.txt*
 
 and how was index.html file shown after conflict was solved:
+
 [image with index.html results](screenshots/003.JPG)
 
 All local branches were pushed into GitHub
