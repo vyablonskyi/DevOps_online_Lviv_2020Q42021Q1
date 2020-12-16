@@ -1,0 +1,51 @@
+bb3a5cd (HEAD -> main, origin/main, origin/HEAD) HEAD@{0}: merge develop: Merge made by the 'recursive' strategy.
+67d4dca HEAD@{1}: checkout: moving from develop to main
+b254b87 (origin/develop, develop) HEAD@{2}: commit: index.htlm has been changed
+a93f544 HEAD@{3}: commit (merge): Merge 'styles' into develop with solving conflict.
+ba07c10 HEAD@{4}: merge images: Merge made by the 'recursive' strategy.
+026794a HEAD@{5}: checkout: moving from main to develop
+67d4dca HEAD@{6}: checkout: moving from develop to main
+289e496 HEAD@{7}: checkout: moving from dbb37a176d7924ed401f4d17b9bb49bd1399ea26 to develop
+dbb37a1 HEAD@{8}: merge images: Merge made by the 'recursive' strategy.
+026794a HEAD@{9}: checkout: moving from develop to 026794a6315db7deb85ea96b3fcc58fd9ae35e33
+289e496 HEAD@{10}: commit: solve issue with index.html
+b2fae41 HEAD@{11}: checkout: moving from styles to develop
+80e85ab (origin/styles, styles) HEAD@{12}: checkout: moving from develop to styles
+b2fae41 HEAD@{13}: commit (merge): Merge branch 'styles' into develop
+38bd0a9 HEAD@{14}: merge images: Merge made by the 'recursive' strategy.
+026794a HEAD@{15}: checkout: moving from styles to develop
+80e85ab (origin/styles, styles) HEAD@{16}: checkout: moving from images to styles
+0ea975a (origin/images, images) HEAD@{17}: checkout: moving from main to images
+67d4dca HEAD@{18}: checkout: moving from images to main
+0ea975a (origin/images, images) HEAD@{19}: commit: Files README.md have been removed.:wq
+1c7cc4a HEAD@{20}: checkout: moving from styles to images
+80e85ab (origin/styles, styles) HEAD@{21}: commit: Files README.md have been removed.
+888ebda HEAD@{22}: checkout: moving from develop to styles
+026794a HEAD@{23}: commit: Files README.md have been removed.
+97f0bd6 HEAD@{24}: checkout: moving from styles to develop
+888ebda HEAD@{25}: checkout: moving from images to styles
+1c7cc4a HEAD@{26}: checkout: moving from main to images
+67d4dca HEAD@{27}: commit: Files README.md have been removed.
+de8c9df HEAD@{28}: checkout: moving from styles to main
+888ebda HEAD@{29}: commit: Files README.md have been removed.
+d3a1d71 HEAD@{30}: checkout: moving from images to styles
+1c7cc4a HEAD@{31}: commit: Files README.md have been removed.
+92da7cb HEAD@{32}: checkout: moving from styles to images
+d3a1d71 HEAD@{33}: checkout: moving from main to styles
+de8c9df HEAD@{34}: commit: Files README.md have been removed
+c1f6acc HEAD@{35}: checkout: moving from develop to main
+97f0bd6 HEAD@{36}: commit: EADME.md files have been removed.Lines starting# with '#' will be ignored, and an empty message aborts the commit.#
+d4133c3 HEAD@{37}: checkout: moving from styles to develop
+d3a1d71 HEAD@{38}: commit: File "index.html" has been changed, css used.
+8a8c8b7 HEAD@{39}: commit: Folder "CSS" and "style.css" file gave been created.
+d4133c3 HEAD@{40}: checkout: moving from images to styles
+92da7cb HEAD@{41}: checkout: moving from styles to images
+d4133c3 HEAD@{42}: checkout: moving from develop to styles
+d4133c3 HEAD@{43}: checkout: moving from images to develop
+92da7cb HEAD@{44}: commit: Image has been added into "index.html"
+9622edc HEAD@{45}: commit: Folder "images" and "git.png" file have been added.
+d4133c3 HEAD@{46}: checkout: moving from develop to images
+d4133c3 HEAD@{47}: commit: Empty "index.html" file has been created.
+c1f6acc HEAD@{48}: checkout: moving from main to develop
+c1f6acc HEAD@{49}: commit: Empty "readme.txt" has been created.
+e153350 HEAD@{50}: clone: from https://github.com/vyablonskyi/DevOps_online_Lviv_2020Q42021Q1
