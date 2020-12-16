@@ -38,8 +38,7 @@ At that moment there were four branches. Below you may see files/folders in each
 
 >(images)
 
-*images/
-   git.png 
+*images/git.png 
 index.html
 readme.txt*
 
@@ -47,10 +46,10 @@ readme.txt*
 
 >(styles)
 
-*css/
-   style.css
+*css/style.css
 index.html
 readme.txt*
+
 [image with index.html results](screenshots/002.JPG)
 
 >(develop)
@@ -59,10 +58,9 @@ readme.txt*
 readme.txt*
 
 After performing steps 19-21 there were the following files/folders in "main" branch:
-*css/
-   style.css
-images/
-   git.png
+
+*css/style.css
+images/git.png
 index.html
 readme.txt*
 
