@@ -1,8 +1,7 @@
-##Part 1##
+**Part 1**
 
 The most popular hypervisors are
 - VmWare vSphere/ESXi
 - Hyper-V
-- KVM
-- XEN
-- Red Hat Enterprise Virtualization
+- KVM / Red Hat Enterprise Virtualization
+- Xen / Citrix XenServer
