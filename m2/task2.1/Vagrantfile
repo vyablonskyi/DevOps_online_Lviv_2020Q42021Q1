@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+   config.ssh.insert_key = false
+   config.vm.provider :virtualbox do |vb|
+       vb.customize ["modifyvm", :id, "--memory", "512"]
+       vb.gui = false
+   end
+
+   # VPS1 - apache server.
+   config.vm.define "app" do |app|
+       app.vm.hostname = "app.mydomain.com"
+       app.vm.box = "ubuntu/trusty64"
+       app.vm.network "forwarded_port", guest: 80, host: 8080
+       app.vm.network "forwarded_port", guest: 443, host: 8443
+       app.vm.box_check_update = false
+       app.vm.network :private_network, ip: "10.0.0.15"
+   end
+
+   # VPS2 - MySQL server.
+   config.vm.define "db" do |db|
+       db.vm.hostname = "db.mydomain.com"
+       db.vm.box = "ubuntu/trusty64"
+       db.vm.box_check_update = false
+       db.vm.network :private_network, ip: "10.0.0.25"
+   end
+
+end
