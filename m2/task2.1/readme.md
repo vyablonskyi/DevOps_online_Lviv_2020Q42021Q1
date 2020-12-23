@@ -7,6 +7,7 @@ The most popular hypervisors are:
 - Xen / Citrix XenServer
 - Oracle Virtual Box
 - VMware Workstation 
+
 First four belong to Type 1 - they run directly on the hardware side, last two belong to Type 2 - they run on the host OS.
 Also hypervisors divided on Monolithic and Microkernel, as example of the firs group can be VMware ESX, Hyper-V belogs to the second group.
 
@@ -24,5 +25,54 @@ Overcommit resources |	No |	Yes |	No |	Yes
 Disk I/O Throttling |	Yes |	Yes |	Yes |	Yes
 Hot plug of virtual resources |	Yes |	Yes |	Yes |	Yes
 
+
 **Part 2**
+
+According to the points  1.1 - 1.3 there were installed Oracle VirtualBox on my PC and was built new VM with the newest Ubuntu server on board:
+
+[view screenshot](screenshots/001.JPG)
+
+Existed VM was cloned and both machines was added to the ne group:
+
+[view screenshot](screenshots/002.JPG)
+
+For the first VM there were taken a few smapshots:
+
+[view screenshot](screenshots/003.JPG)
+
+Also this VM was exported to \*.ova file:
+
+[view screenshot](screenshots/004.JPG)
+
+after that from this file there was built new VM:
+
+[view screenshot](screenshots/005.JPG)
+
+[view screenshot](screenshots/006.JPG)
+
+Also was tested adding USB device to VM:
+
+[view screenshot](screenshots/007.JPG)
+
+and configured shared folder:
+
+[view screenshot](screenshots/008.JPG)
+
+Also I experimented with *VBoxManage* and manage VMs via command line interface
+
+
+**Part 3**
+
+Vagrant was installed on my PC and environment with the default Vagrant was initiated:
+
+[view screenshot](screenshots/009.JPG)
+
+after running this machine I was able to access it via SSH from host mashine via forwarded SSH port:
+
+[view screenshot](screenshots/010.JPG)
+
+After that was created my own vagrant environment which contains two Ubuntu 16 based VPSes. Appropriate *Vagrantfile* may be found [here](Vagrantfile) 
+
+
+
 
