@@ -60,8 +60,8 @@ and configured shared folder:
 
 There was checked all network modes and as result I'd got the following table:
  
- | VM > Host |	Host > VM |	VM1 <> VM2 |	VM > LAN |	LAN > VM
---- | --- | --- | --- | --- 
+--- | VM > Host |	Host > VM |	VM1 <> VM2 |	VM > LAN |	LAN > VM
+ --- |--- | --- | --- | --- | --- 
 NAT |	+ |	Port forwarding |	- |	+ |	Port forwarding
 Bridged Adapter |	+ |	+ |	+ |	+ |	+
 Internal Network |	- |	- |	+ |	- |	-
