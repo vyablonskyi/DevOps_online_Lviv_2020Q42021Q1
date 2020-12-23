@@ -58,6 +58,16 @@ and configured shared folder:
 
 [view screenshot](screenshots/008.JPG)
 
+There was checked all network modes and as result I'd got the following table:
+ 
+ | | VM > Host |	Host > VM |	VM1 <> VM2 |	VM > LAN |	LAN > VM
+NAT |	+ |	Port forwarding |	- |	+ |	Port forwarding
+Bridged Adapter |	+ |	+ |	+ |	+ |	+
+Internal Network |	- |	- |	+ |	- |	-
+Host-only Adapter |	+ |	+ |	+ |	- |	-
+NAT network |	+ |	Port forwarding |	+ |	+ |	Port forwarding
+
+
 Also I experimented with *VBoxManage* and manage VMs via command line interface
 
 
