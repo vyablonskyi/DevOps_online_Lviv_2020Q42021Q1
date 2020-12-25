@@ -1,3 +1,4 @@
+'''
 CREATE DATABASE busroutes;
 
 +--------------------+
@@ -102,7 +103,7 @@ mysql> SELECT Name,lname,bus_id FROM  driver WHERE bus_id>5 ORDER BY lname;
 | Vasia  | Pupkin     |      6 |
 | Vitia  | Yanukovych |      7 |
 +--------+------------+--------+
-
+'''
 
 
 
