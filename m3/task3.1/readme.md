@@ -49,7 +49,6 @@ INSERT INTO BUS (`carlicence`, `inspection`, `route_id`) VALUES ('BC0345AA','201
 |  9 | BC0987BB   | 2023-01-20 |       76 |
 | 10 | BC5463BC   | 2013-04-20 |       76 |
 +----+------------+------------+----------+
-
 INSERT INTO driver (`licence`,`Name`,`lname`,`bus_id`)VALUES('AA7654675','John','Lennon',9);
 ...
 +----+-----------+--------+------------+--------+
@@ -68,7 +67,6 @@ INSERT INTO driver (`licence`,`Name`,`lname`,`bus_id`)VALUES('AA7654675','John',
 | 11 | BB6666666 | Mikola | Azirov     |      7 |
 | 12 | GT9595959 | Vova   | Bubochka   |      5 |
 +----+-----------+--------+------------+--------+
-
 INSERT INTO route (`ID`,`lenght`,`start_time`,`end_time`)VALUES(23,16,'06:00:00','23:30:00');
 ....
 +----+--------+------------+----------+
@@ -78,7 +76,6 @@ INSERT INTO route (`ID`,`lenght`,`start_time`,`end_time`)VALUES(23,16,'06:00:00'
 | 45 |      8 | 06:30:00   | 22:45:00 |
 | 76 |     25 | 05:45:00   | 00:15:00 |
 +----+--------+------------+----------+
-
 INSERT INTO `daylog` (`route_id`,`bus_id`,`driver_id`,`start_time`,`end_time`,`countoftrips`)VALUES(76,10,5,'2020-12-24 06:30','2020-12-24 15:30',4);
 ...
 +----+----------+--------+-----------+---------------------+---------------------+--------------+
@@ -101,7 +98,6 @@ mysql> SELECT `carlicence` FROM `BUS` WHERE `route_id`='45';
 | BC3467BC   |
 | BC3468BC   |
 +------------+
-
 mysql> SELECT Name,lname,bus_id FROM  driver WHERE bus_id>5 ORDER BY lname;
 +--------+------------+--------+
 | Name   | lname      | bus_id |
@@ -113,7 +109,6 @@ mysql> SELECT Name,lname,bus_id FROM  driver WHERE bus_id>5 ORDER BY lname;
 | Vasia  | Pupkin     |      6 |
 | Vitia  | Yanukovych |      7 |
 +--------+------------+--------+
-
 mysql> SELECT route_id, COUNT(*) AS carlicence FROM BUS GROUP BY route_id;
 +----------+------------+
 | route_id | carlicence |
@@ -124,18 +119,8 @@ mysql> SELECT route_id, COUNT(*) AS carlicence FROM BUS GROUP BY route_id;
 +----------+------------+
 ```
 I experimented with different SQL queries, for example:
-
 ```
 mysql> ALTER TABLE BUS RENAME COLUMN `carlicence` TO `license_plate`;
-
-
-
-
-
-
-
-
-
 +----+---------------+------------+----------+
 | ID | license_plate | inspection | route_id |
 +----+---------------+------------+----------+
@@ -157,7 +142,6 @@ after running mysql as the ***tester*** I was able to create new table in the **
 mysql> CREATE TABLE `person` (`ID` int NOT NULL, `first_name` char(30) NOT NULL, `last_name` char(30) NOT NULL, `birth` DATETIME NOT NULL, PRIMARY KEY (`ID`));
 Query OK, 0 rows affected (0.04 sec)
 ```
-
 as a final test in this section I have run the following SELECTs on the mysql database:
 ```
 mysql> select Host,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Reload_priv,Shutdown_priv,Process_priv,File_priv from user where user='tester';
@@ -175,5 +159,6 @@ mysql>  select Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Crea
 1 row in set (0.00 sec)
 ```
 So as a conclusion I may say that it is possible to change user permissions directly in the ***db*** and ***user*** tables of ***mysql*** database
+
 
 **Part 2**
