@@ -18,7 +18,7 @@ CREATE DATABASE busroutes;
 ```
 And tables:
 ```
-CREATE TABLE `BUS` (`ID` int NOT NULL AUTO_INCREMENT, `carlicence` char(8) NOT NULL UNIQUE, `inspection` DATE NOT NULL, `route_id` int NOT NULL,PRIMARY KEY (ID`));
+CREATE TABLE `BUS` (`ID` int NOT NULL AUTO_INCREMENT, `carlicence` char(8) NOT NULL UNIQUE, `inspection` DATE NOT NULL, `route_id` int NOT NULL,PRIMARY KEY (`ID`));
 CREATE TABLE `route` (`ID` int NOT NULL AUTO_INCREMENT, `lenght` int NOT NULL, `start_time` TIME NOT NULL, `end_time` TIME NOT NULL, PRIMARY KEY (`ID`));
 CREATE TABLE `driver` (`ID` int NOT NULL AUTO_INCREMENT, `licence` char(10) NOT NULL UNIQUE, `Name` char(30) NOT NULL, `lname` char(30) NOT NULL, `bus_id` int NOT NULL, PRIMARY KEY (`ID`));
 CREATE TABLE `daylog` (`ID` int NOT NULL AUTO_INCREMENT, `route_id` int NOT NULL, `bus_id` int NOT NULL, `driver_id` int NOT NULL, `start_time` DATETIME NOT NULL, `end_time` DATETIME NOT NULL, `countoftrips` int NOT NULL, PRIMARY KEY (`ID`));
@@ -91,7 +91,7 @@ INSERT INTO `daylog` (`route_id`,`bus_id`,`driver_id`,`start_time`,`end_time`,`c
 |  5 |       45 |      6 |         9 | 2020-12-24 06:30:00 | 2020-12-24 15:30:00 |            7 |
 +----+----------+--------+-----------+---------------------+---------------------+--------------+
 ```
-After that was run a few different ***SELECT*** commands: 
+After that was run a few different ***SELECT*** commands:
 ```
 mysql> SELECT `carlicence` FROM `BUS` WHERE `route_id`='45';
 +------------+
@@ -113,7 +113,67 @@ mysql> SELECT Name,lname,bus_id FROM  driver WHERE bus_id>5 ORDER BY lname;
 | Vasia  | Pupkin     |      6 |
 | Vitia  | Yanukovych |      7 |
 +--------+------------+--------+
+
+mysql> SELECT route_id, COUNT(*) AS carlicence FROM BUS GROUP BY route_id;
++----------+------------+
+| route_id | carlicence |
++----------+------------+
+|       23 |          5 |
+|       45 |          3 |
+|       76 |          2 |
++----------+------------+
+```
+I experimented with different SQL queries, for example:
+
+```
+mysql> ALTER TABLE BUS RENAME COLUMN `carlicence` TO `license_plate`;
+
+
+
+
+
+
+
+
+
++----+---------------+------------+----------+
+| ID | license_plate | inspection | route_id |
++----+---------------+------------+----------+
+```
+Then there was created new user ***tester*** that can access mysql databases  from ***localhost***:
+```
+mysql>  CREATE USER `tester`@`localhost` IDENTIFIED BY 'firstpass';
+```
+also was created new database:
+```
+mysql> CREATE DATABASE dbfortest;
+```
+and there were added all permissons for new user for this database:
+```
+mysql> GRANT ALL ON dbfortest.* TO `tester`@`localhost`;
+```
+after running mysql as the ***tester*** I was able to create new table in the ***dbfortest*** database:
+```
+mysql> CREATE TABLE `person` (`ID` int NOT NULL, `first_name` char(30) NOT NULL, `last_name` char(30) NOT NULL, `birth` DATETIME NOT NULL, PRIMARY KEY (`ID`));
+Query OK, 0 rows affected (0.04 sec)
 ```
 
+as a final test in this section I have run the following SELECTs on the mysql database:
+```
+mysql> select Host,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Reload_priv,Shutdown_priv,Process_priv,File_priv from user where user='tester';
++-----------+--------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+
+| Host      | User   | Select_priv | Insert_priv | Update_priv | Delete_priv | Create_priv | Drop_priv | Reload_priv | Shutdown_priv | Process_priv | File_priv |
++-----------+--------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+
+| localhost | tester | N           | N           | N           | N           | N           | N         | N           | N             | N            | N         |
++-----------+--------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+
+1 row in set (0.00 sec)
+mysql>  select Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Grant_priv,References_priv,Index_priv from db where db='dbfortest';        +-----------+-----------+--------+-------------+-------------+-------------+-------------+-------------+-----------+------------+-----------------+------------+
+| Host      | Db        | User   | Select_priv | Insert_priv | Update_priv | Delete_priv | Create_priv | Drop_priv | Grant_priv | References_priv | Index_priv |
++-----------+-----------+--------+-------------+-------------+-------------+-------------+-------------+-----------+------------+-----------------+------------+
+| localhost | dbfortest | tester | Y           | Y           | Y           | Y           | Y           | Y         | N          | Y               | Y          |
++-----------+-----------+--------+-------------+-------------+-------------+-------------+-------------+-----------+------------+-----------------+------------+
+1 row in set (0.00 sec)
+```
+So as a conclusion I may say that it is possible to change user permissions directly in the ***db*** and ***user*** tables of ***mysql*** database
 
-
+**Part 2**
