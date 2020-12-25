@@ -1,6 +1,11 @@
-'''
-CREATE DATABASE busroutes;
+**Part 1**
 
+During working on this task I installed on Ubuntu VM MySQL server, designed small database that descrides city bus routes.
+Database schema is acessible at the [link](screenshot\001.jpg)
+
+There was created database:
+```
+CREATE DATABASE busroutes;
 +--------------------+
 | Database           |
 +--------------------+
@@ -10,12 +15,13 @@ CREATE DATABASE busroutes;
 | performance_schema |
 | sys                |
 +--------------------+
-
+```
+And tables:
+```
 CREATE TABLE `BUS` (`ID` int NOT NULL AUTO_INCREMENT, `carlicence` char(8) NOT NULL UNIQUE, `inspection` DATE NOT NULL, `route_id` int NOT NULL,PRIMARY KEY (ID`));
 CREATE TABLE `route` (`ID` int NOT NULL AUTO_INCREMENT, `lenght` int NOT NULL, `start_time` TIME NOT NULL, `end_time` TIME NOT NULL, PRIMARY KEY (`ID`));
 CREATE TABLE `driver` (`ID` int NOT NULL AUTO_INCREMENT, `licence` char(10) NOT NULL UNIQUE, `Name` char(30) NOT NULL, `lname` char(30) NOT NULL, `bus_id` int NOT NULL, PRIMARY KEY (`ID`));
 CREATE TABLE `daylog` (`ID` int NOT NULL AUTO_INCREMENT, `route_id` int NOT NULL, `bus_id` int NOT NULL, `driver_id` int NOT NULL, `start_time` DATETIME NOT NULL, `end_time` DATETIME NOT NULL, `countoftrips` int NOT NULL, PRIMARY KEY (`ID`));
-
 +---------------------+
 | Tables_in_busroutes |
 +---------------------+
@@ -24,9 +30,11 @@ CREATE TABLE `daylog` (`ID` int NOT NULL AUTO_INCREMENT, `route_id` int NOT NULL
 | driver              |
 | route               |
 +---------------------+
-
+```
+Each table was filled by data:
+```
 INSERT INTO BUS (`carlicence`, `inspection`, `route_id`) VALUES ('BC0345AA','2012-03-20',23);
-
+...
 +----+------------+------------+----------+
 | ID | carlicence | inspection | route_id |
 +----+------------+------------+----------+
@@ -43,7 +51,7 @@ INSERT INTO BUS (`carlicence`, `inspection`, `route_id`) VALUES ('BC0345AA','201
 +----+------------+------------+----------+
 
 INSERT INTO driver (`licence`,`Name`,`lname`,`bus_id`)VALUES('AA7654675','John','Lennon',9);
-
+...
 +----+-----------+--------+------------+--------+
 | ID | licence   | Name   | lname      | bus_id |
 +----+-----------+--------+------------+--------+
@@ -62,7 +70,7 @@ INSERT INTO driver (`licence`,`Name`,`lname`,`bus_id`)VALUES('AA7654675','John',
 +----+-----------+--------+------------+--------+
 
 INSERT INTO route (`ID`,`lenght`,`start_time`,`end_time`)VALUES(23,16,'06:00:00','23:30:00');
-
+....
 +----+--------+------------+----------+
 | ID | lenght | start_time | end_time |
 +----+--------+------------+----------+
@@ -72,7 +80,7 @@ INSERT INTO route (`ID`,`lenght`,`start_time`,`end_time`)VALUES(23,16,'06:00:00'
 +----+--------+------------+----------+
 
 INSERT INTO `daylog` (`route_id`,`bus_id`,`driver_id`,`start_time`,`end_time`,`countoftrips`)VALUES(76,10,5,'2020-12-24 06:30','2020-12-24 15:30',4);
-
+...
 +----+----------+--------+-----------+---------------------+---------------------+--------------+
 | ID | route_id | bus_id | driver_id | start_time          | end_time            | countoftrips |
 +----+----------+--------+-----------+---------------------+---------------------+--------------+
@@ -82,7 +90,9 @@ INSERT INTO `daylog` (`route_id`,`bus_id`,`driver_id`,`start_time`,`end_time`,`c
 |  4 |       76 |      9 |         1 | 2020-12-24 05:45:00 | 2020-12-24 13:45:00 |            3 |
 |  5 |       45 |      6 |         9 | 2020-12-24 06:30:00 | 2020-12-24 15:30:00 |            7 |
 +----+----------+--------+-----------+---------------------+---------------------+--------------+
-
+```
+After that was run a few different ***SELECT*** commands: 
+```
 mysql> SELECT `carlicence` FROM `BUS` WHERE `route_id`='45';
 +------------+
 | carlicence |
@@ -103,7 +113,7 @@ mysql> SELECT Name,lname,bus_id FROM  driver WHERE bus_id>5 ORDER BY lname;
 | Vasia  | Pupkin     |      6 |
 | Vitia  | Yanukovych |      7 |
 +--------+------------+--------+
-'''
+```
 
 
 
