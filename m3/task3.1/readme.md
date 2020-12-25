@@ -1,7 +1,7 @@
 **Part 1**
 
 During working on this task I installed on Ubuntu VM MySQL server, designed small database that descrides city bus routes.
-Database schema is acessible at the [link](screenshot\001.jpg)
+Database schema is acessible at the [link](screenshots/001.jpg)
 
 There was created database:
 ```
