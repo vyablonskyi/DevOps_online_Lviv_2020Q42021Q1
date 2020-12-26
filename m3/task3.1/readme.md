@@ -163,3 +163,9 @@ So as a conclusion I may say that it is possible to change user permissions dire
 
 
 **Part 2**
+
+The ***busroutes*** database was dumped by running the following command in root session:
+```
+mysqldump busroutes > busroutes.sql
+```
+which ceated /root/busroutes.sql file which is [attached](busroutes.sql) to this project.
