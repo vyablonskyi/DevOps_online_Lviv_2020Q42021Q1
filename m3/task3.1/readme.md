@@ -151,7 +151,8 @@ mysql> select Host,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_p
 | localhost | tester | N           | N           | N           | N           | N           | N         | N           | N             | N            | N         |
 +-----------+--------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+
 1 row in set (0.00 sec)
-mysql>  select Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Grant_priv,References_priv,Index_priv from db where db='dbfortest';        +-----------+-----------+--------+-------------+-------------+-------------+-------------+-------------+-----------+------------+-----------------+------------+
+mysql>  select Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Grant_priv,References_priv,Index_priv from db where db='dbfortest';
++-----------+-----------+--------+-------------+-------------+-------------+-------------+-------------+-----------+------------+-----------------+------------+
 | Host      | Db        | User   | Select_priv | Insert_priv | Update_priv | Delete_priv | Create_priv | Drop_priv | Grant_priv | References_priv | Index_priv |
 +-----------+-----------+--------+-------------+-------------+-------------+-------------+-------------+-----------+------------+-----------------+------------+
 | localhost | dbfortest | tester | Y           | Y           | Y           | Y           | Y           | Y         | N          | Y               | Y          |
