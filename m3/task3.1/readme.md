@@ -169,3 +169,27 @@ The ***busroutes*** database was dumped by running the following command in root
 mysqldump busroutes > busroutes.sql
 ```
 which ceated /root/busroutes.sql file which is [attached](busroutes.sql) to this project.
+
+After that the ***driver*** table was deleted:
+```
+mysql> USE busroutes; DROP TABLE driver;
++---------------------+
+| Tables_in_busroutes |
++---------------------+
+| BUS                 |
+| daylog              |
+| route               |
++---------------------+
+```
+and restoration got database back to the previous state:
+```
+# mysql busroutes < busroutes.sql
++---------------------+
+| Tables_in_busroutes |
++---------------------+
+| BUS                 |
+| daylog              |
+| driver              |
+| route               |
++---------------------+
+```
