@@ -219,3 +219,5 @@ this [dump](busroutes_n.sql) is also added to this project
 
 
 **Part 3**
+
+There was created [DynamoDB table](screenshots/004.JPG) in AWS which contains current coordinates of gamers in some online game. I tried to [searsh some data](screenshots/005.JPG) by using Query.
