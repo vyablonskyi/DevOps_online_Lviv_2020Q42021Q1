@@ -193,3 +193,4 @@ and restoration got database back to the previous state:
 | route               |
 +---------------------+
 ```
+There was created ***d1*** databas einstance in Amazon RDS [see here](screnshots/002.JPG)
