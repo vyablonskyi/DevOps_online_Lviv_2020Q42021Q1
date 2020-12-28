@@ -90,7 +90,7 @@ INSERT INTO `daylog` (`route_id`,`bus_id`,`driver_id`,`start_time`,`end_time`,`c
 ```
 After that was run a few different ***SELECT*** commands:
 ```
-mysql> SELECT `carlicence` FROM `BUS` WHERE `route_id`='45';
+mysql> select select 
 +------------+
 | carlicence |
 +------------+
@@ -193,4 +193,21 @@ and restoration got database back to the previous state:
 | route               |
 +---------------------+
 ```
-There was created ***d1*** databas einstance in Amazon RDS [see here](screnshots/002.JPG)
+There was created ***d1*** database instance with new ***busroutes*** database in Amazon RDS [see here](screenshots/002.JPG)
+and previously created sql dump was restored on the database there:
+```
+mysql -u admin --port=3306 --host=d1.c724bfxym5yf.eu-central-1.rds.amazonaws.com -p busroutes < busroutes.sql
+```
+this database is accessible and can be used from the whole Globe:
+```
+mysql -u admin --port=3306 --host=d1.c724bfxym5yf.eu-central-1.rds.amazonaws.com -p busroutes
++---------------------+
+| Tables_in_busroutes |
++---------------------+
+| BUS                 |
+| daylog              |
+| driver              |
+| route               |
++---------------------+
+```
+There were run a few *SELECTs* on the remote DB and [results](screenshots/003.JPG) were the same aas previously on the local DB
