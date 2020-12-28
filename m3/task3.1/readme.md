@@ -211,3 +211,11 @@ mysql -u admin --port=3306 --host=d1.c724bfxym5yf.eu-central-1.rds.amazonaws.com
 +---------------------+
 ```
 There were run a few *SELECTs* on the remote DB and [results](screenshots/003.JPG) were the same aas previously on the local DB
+database from the remote Amazon instance was successfully dumped:
+```
+mysqldump -u admin --port=3306 --host=d1.c724bfxym5yf.eu-central-1.rds.amazonaws.com -p busroutes > busroutes_n.sql
+```
+this [dump](busroutes_n.sql) is also added to this project
+
+
+**Part 3**
