@@ -1,12 +1,12 @@
 **Part1**
 
 
-*1) Log in to the system as root.*
+1) *Log in to the system as root.*
 
 There was built new virtual machine with Ubuntu 18.04LTS on board, set up root password and log into the sustem as root [see results](screenshots/001.JPG)
 
 
-*2) Use the passwd command to change the password. Examine the basic parameters of the command. What system file does it change?*
+2) *Use the passwd command to change the password. Examine the basic parameters of the command. What system file does it change?*
 
 Passwords of "root" and "tester" users were changed by running the ***passwd*** commnads:
 - cleared password of the "tester" user and set new password
@@ -33,7 +33,7 @@ The "passwd" command changes the following syspem files:
 - /etc/pam.d/passwd
 
 
-*3) Determine the users registered in the system, as well as what commands they execute. What additional information can be gleaned from the command execution?*
+3) *Determine the users registered in the system, as well as what commands they execute. What additional information can be gleaned from the command execution?*
 
 By running the ***w*** command there was determined who wass logged into the system and what commands they run:
 ```
@@ -54,7 +54,7 @@ root@test1:~#
 These commands show also type of connections, start time of sessions, remote hosts, CPU usage
 
 
-*4) Change personal information about yourself.*
+4) *Change personal information about yourself.*
 
 Personal information about the "tester" user was changed by editing the 5th parameter in appropriate string in /etc/passwd file:
 ```
@@ -73,7 +73,7 @@ The same changes may have been implemented by running the ***usermod*** command:
 usermod -c 'Junior Tester' tester
 ```
 
-*5) Become familiar with the Linux help system and the man and info commands. Get help on the previously discussed commands, define and describe any two keys for these commands. Give examples.*
+5) *Become familiar with the Linux help system and the man and info commands. Get help on the previously discussed commands, define and describe any two keys for these commands. Give examples.*
 
 As an example of using ***man*** and ***info** command I can describe ***-s*** key of the ***w*** command:
 
@@ -94,13 +94,13 @@ root@test1:~# who -b
 ```
 
 
-*6) Explore the more and less commands using the help system. View the contents of files .bash* using commands.*
+6) *Explore the more and less commands using the help system. View the contents of files .bash* using commands.*
 
 ***more*** command outputs all files which were chosen by the .bash* mask in one thread page by page
 ***less*** command outputs files one by one and we can navigate in each file and shoose next file by the ***:n*** command or previous file by the ***:p*** command
 
 
-*7) * Describe in plans that you are working on laboratory work 1. Tip: You should read the documentation for the finger command.*
+7) *Describe in plans that you are working on laboratory work 1. Tip: You should read the documentation for the finger command.*
 
 There was cretaed the /home/tester/.plan file with the "working on the Lab1 in laboratory" string inside and after that the ***finger tester*** command showed the following:
 ```
@@ -116,9 +116,9 @@ working on the Lab1 in laboratory
 ```
 
 
-*8) * List the contents of the home directory using the ls command, define its files and directories. Hint: Use the help system to familiarize yourself with the ls command.*
+8) *List the contents of the home directory using the ls command, define its files and directories. Hint: Use the help system to familiarize yourself with the ls command.*
 
-Incase of this task I can only provide output of appropriate commands:
+In case of this task I can only provide output of appropriate commands:
 ```
 root@test1:~# ls -la ~tester
 total 40
@@ -142,7 +142,7 @@ root@test1:~# ls -d ~tester
 **Part2**
 
 
-1) Examine the tree command. Master the technique of applying a template, for example, display all files that contain a character c, or files that contain a specific sequence of characters. List subdirectories of the root directory up to and including the second nesting level.
+1) *Examine the tree command. Master the technique of applying a template, for example, display all files that contain a character c, or files that contain a specific sequence of characters. List subdirectories of the root directory up to and including the second nesting level.*
 
 - marked all files in tree output of the /var directory that contain the 'abl' substring:
 ```
@@ -154,7 +154,7 @@ tree -d -L 2 /
 ```
 
 
-2) What command can be used to determine the type of file (for example, text or binary)? Give an example.
+2) *What command can be used to determine the type of file (for example, text or binary)? Give an example.*
 
 There is the ***file*** command that provides with necessary information:
 ```
@@ -165,7 +165,7 @@ root@test1:~# file /sbin/route
 ```
 
 
-3) Master the skills of navigating the file system using relative and absolute paths. How can you go back to your home directory from anywhere in the filesystem?
+3) *Master the skills of navigating the file system using relative and absolute paths. How can you go back to your home directory from anywhere in the filesystem?*
 
 You just need to run ***cd ~*** command to go back to current user home dir or type ***cd ~username*** to go to "username" home:
 ```
@@ -178,7 +178,7 @@ root@test1:~# pwd
 ```
 
 
-4) Become familiar with the various options for the ls command. Give examples of listing directories using different keys. Explain the information displayed on the terminal using the -l and -a switches.
+4) *Become familiar with the various options for the ls command. Give examples of listing directories using different keys. Explain the information displayed on the terminal using the -l and -a switches.*
 
 ```
 ls -a
@@ -197,23 +197,81 @@ shows only directories
 ls -i 
 ```
 shows inode (index) of each file 
-5) Perform the following sequence of operations: - create a subdirectory in the home directory; - in this subdirectory create a file containing information about directories located in the root directory (using I/O redirection operations);
-- view the created file;
-- copy the created file to your home directory using relative and absolute addressing.
-- delete the previously created subdirectory with the file requesting removal;
-- delete the file copied to the home directory.
 
 
-6) Perform the following sequence of operations:
-- create a subdirectory test in the home directory;
-- copy the .bash_history file to this directory while changing its name to labwork2;
-- create a hard and soft link to the labwork2 file in the test subdirectory;
-- how to define soft and hard link, what do these
-concepts;
-- change the data by opening a symbolic link. What changes will happen and why
-- rename the hard link file to hard_lnk_labwork2;
-- rename the soft link file to symb_lnk_labwork2 file;
-- then delete the labwork2. What changes have occurred and why?
+5) *Perform the following sequence of operations:
+*- create a subdirectory in the home directory;
+*- in this subdirectory create a file containing information about directories located in the root directory (using I/O redirection operations);
+*- view the created file;
+*- copy the created file to your home directory using relative and absolute addressing.
+*- delete the previously created subdirectory with the file requesting removal;
+*- delete the file copied to the home directory.
+```
+tester@test1:~$ mkdir newdir
+tester@test1:~$ cd newdir
+tester@test1:~/newdir$ ls -la / > root_dir.lst
+tester@test1:~/newdir$ more root_dir.lst
+total 2017384
+drwxr-xr-x  24 root root       4096 Jan 17 18:03 .
+drwxr-xr-x  24 root root       4096 Jan 17 18:03 ..
+drwxr-xr-x   2 root root       4096 Jan 17 18:12 bin
+drwxr-xr-x   3 root root       4096 Jan 17 18:07 boot
+drwxr-xr-x   2 root root       4096 Jan 17 18:01 cdrom
+drwxr-xr-x  18 root root       3880 Jan 17 18:16 dev
+drwxr-xr-x  91 root root       4096 Jan 17 21:44 etc
+drwxr-xr-x   3 root root       4096 Jan 17 18:17 home
+lrwxrwxrwx   1 root root         34 Jan 17 18:02 initrd.img -> boot/initrd.img-4.15.0-132-generic
+lrwxrwxrwx   1 root root         34 Jan 17 18:02 initrd.img.old -> boot/initrd.img-4.15.0-132-generic
+drwxr-xr-x  22 root root       4096 Jan 17 18:01 lib
+drwxr-xr-x   2 root root       4096 Aug  6 22:37 lib64
+drwx------   2 root root      16384 Jan 17 17:59 lost+found
+drwxr-xr-x   2 root root       4096 Aug  6 22:35 media
+drwxr-xr-x   2 root root       4096 Aug  6 22:35 mnt
+drwxr-xr-x   2 root root       4096 Aug  6 22:35 opt
+dr-xr-xr-x 103 root root          0 Jan 17 18:16 proc
+drwx------   5 root root       4096 Jan 17 22:38 root
+drwxr-xr-x  25 root root        840 Jan 17 21:27 run
+drwxr-xr-x   2 root root      12288 Jan 17 18:12 sbin
+drwxr-xr-x   2 root root       4096 Jan 17 18:17 snap
+drwxr-xr-x   2 root root       4096 Aug  6 22:35 srv
+-rw-------   1 root root 2065694720 Jan 17 18:03 swap.img
+dr-xr-xr-x  13 root root          0 Jan 17 22:36 sys
+drwxrwxrwt   9 root root       4096 Jan 17 22:39 tmp
+drwxr-xr-x  10 root root       4096 Aug  6 22:35 usr
+drwxr-xr-x  13 root root       4096 Aug  6 22:40 var
+lrwxrwxrwx   1 root root         31 Jan 17 18:02 vmlinuz -> boot/vmlinuz-4.15.0-132-generic
+lrwxrwxrwx   1 root root         31 Jan 17 18:02 vmlinuz.old -> boot/vmlinuz-4.15.0-132-generic
+tester@test1:~/newdir$ cp root_dir.lst ../
+tester@test1:~/newdir$ cp root_dir.lst ~/
+tester@test1:~/newdir$ cp root_dir.lst /home/tester/
+tester@test1:~/newdir$ tree ~
+/home/tester
+├── newdir
+│   └── root_dir.lst
+└── root_dir.lst
+
+1 directory, 2 files
+tester@test1:~/newdir$ cd ~
+tester@test1:~$ rm -ir newdir
+rm: remove directory 'newdir'? yes
+tester@test1:~$ rm root_dir.lst
+tester@test1:~$ tree ~
+/home/tester
+
+0 directories, 0 files
+tester@test1:~$
+```
+
+
+6) *Perform the following sequence of operations:
+*- create a subdirectory test in the home directory;
+*- copy the .bash_history file to this directory while changing its name to labwork2;
+*- create a hard and soft link to the labwork2 file in the test subdirectory;
+*- how to define soft and hard link, what do these concepts;
+*- change the data by opening a symbolic link. What changes will happen and why
+*- rename the hard link file to hard_lnk_labwork2;
+*- rename the soft link file to symb_lnk_labwork2 file;
+*- then delete the labwork2. What changes have occurred and why?
 
 
 7) Using the locate utility, find all files that contain the squid and traceroute sequence.
