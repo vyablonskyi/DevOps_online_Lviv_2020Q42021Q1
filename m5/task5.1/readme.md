@@ -27,7 +27,6 @@ root@test1:~# passwd -S
 root P 01/17/2021 0 90 7 -1
 root@test1:~#
 ```
-
 The "passwd" command changes the following syspem files:
 - /etc/passwd
 - /etc/shadow
@@ -35,6 +34,7 @@ The "passwd" command changes the following syspem files:
 
 
 *3) Determine the users registered in the system, as well as what commands they execute. What additional information can be gleaned from the command execution?*
+
 By running the ***w*** command there was determined who is logged into the system and what commands they run:
 ```
 root@test1:~# w
@@ -53,7 +53,9 @@ root@test1:~#
 ```
 These command show also type of connections, start time of sessions, remote hosts, CPU usage
 
+
 *4) Change personal information about yourself.*
+
 Personal information about the "tester" user was changed by editing the 5th parameter in appropriate string in /etc/passwd file:
 ```
 root@test1:~# cat /etc/passwd | grep tester
@@ -66,8 +68,13 @@ root@test1:~# cat /etc/passwd | grep tester
 tester:x:1000:1000:Junior Tester:/home/tester:/bin/bash
 root@test1:~#
 ```
+The same changes may have been implemented by running the ***usermod*** command:
+```
+usermod -c 'Junior Tester' tester
+```
 
 *5) Become familiar with the Linux help system and the man and info commands. Get help on the previously discussed commands, define and describe any two keys for these commands. Give examples.*
+
 As an example of using ***man*** and ***info** command I can describe ***-s*** key of the ***w*** command:
 
 -s, --short    Use the short format.  Don't print the login time, JCPU or PCPU times.
@@ -86,8 +93,27 @@ root@test1:~# who -b
          system boot  2021-01-17 18:16
 ```
 
+
 *6) Explore the more and less commands using the help system. View the contents of files .bash* using commands.*
 
+***more*** command outputs all files which were chosen by the .bash* mask in one thread page by page
+***less*** command outputs files one by one and we can navigate in each file and shoose next file by the ***:n*** command or previous file by the ***:p*** command
+
+
 *7) * Describe in plans that you are working on laboratory work 1. Tip: You should read the documentation for the finger command.*
+
+There was cretaed the /home/tester/.plan file with the "working on the Lab1 in laboratory" string inside and after that the ***finger tester*** command showed the following^
+```
+root@test1:~# finger tester
+Login: tester                           Name: Junior Tester
+Directory: /home/tester                 Shell: /bin/bash
+On since Sun Jan 17 19:12 (UTC) on tty1   2 hours 8 minutes idle
+     (messages off)
+No mail.
+Plan:
+working on the Lab1 in laboratory
+
+```
+
 
 *8) * List the contents of the home directory using the ls command, define its files and directories. Hint: Use the help system to familiarize yourself with the ls command.*
