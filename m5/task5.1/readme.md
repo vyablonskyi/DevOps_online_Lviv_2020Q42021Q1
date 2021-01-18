@@ -200,16 +200,17 @@ shows inode (index) of each file
 
 
 5) *Perform the following sequence of operations:
-*- create a subdirectory in the home directory;
-*- in this subdirectory create a file containing information about directories located in the root directory (using I/O redirection operations);
-*- view the created file;
-*- copy the created file to your home directory using relative and absolute addressing.
-*- delete the previously created subdirectory with the file requesting removal;
-*- delete the file copied to the home directory.
+- *create a subdirectory in the home directory;
 ```
 tester@test1:~$ mkdir newdir
 tester@test1:~$ cd newdir
+```
+- *in this subdirectory create a file containing information about directories located in the root directory (using I/O redirection operations);
+```
 tester@test1:~/newdir$ ls -la / > root_dir.lst
+```
+- *view the created file;
+```
 tester@test1:~/newdir$ more root_dir.lst
 total 2017384
 drwxr-xr-x  24 root root       4096 Jan 17 18:03 .
@@ -241,6 +242,9 @@ drwxr-xr-x  10 root root       4096 Aug  6 22:35 usr
 drwxr-xr-x  13 root root       4096 Aug  6 22:40 var
 lrwxrwxrwx   1 root root         31 Jan 17 18:02 vmlinuz -> boot/vmlinuz-4.15.0-132-generic
 lrwxrwxrwx   1 root root         31 Jan 17 18:02 vmlinuz.old -> boot/vmlinuz-4.15.0-132-generic
+```
+- *copy the created file to your home directory using relative and absolute addressing.
+```
 tester@test1:~/newdir$ cp root_dir.lst ../
 tester@test1:~/newdir$ cp root_dir.lst ~/
 tester@test1:~/newdir$ cp root_dir.lst /home/tester/
@@ -252,8 +256,14 @@ tester@test1:~/newdir$ tree ~
 
 1 directory, 2 files
 tester@test1:~/newdir$ cd ~
+```
+- *delete the previously created subdirectory with the file requesting removal;
+```
 tester@test1:~$ rm -ir newdir
 rm: remove directory 'newdir'? yes
+```
+- *delete the file copied to the home directory.
+```
 tester@test1:~$ rm root_dir.lst
 tester@test1:~$ tree ~
 /home/tester
@@ -264,33 +274,141 @@ tester@test1:~$
 
 
 6) *Perform the following sequence of operations:
-*- create a subdirectory test in the home directory;
-*- copy the .bash_history file to this directory while changing its name to labwork2;
-*- create a hard and soft link to the labwork2 file in the test subdirectory;
-*- how to define soft and hard link, what do these concepts;
-*- change the data by opening a symbolic link. What changes will happen and why
-*- rename the hard link file to hard_lnk_labwork2;
-*- rename the soft link file to symb_lnk_labwork2 file;
-*- then delete the labwork2. What changes have occurred and why?
+- *create a subdirectory test in the home directory;
+```
+tester@test1:~$ mkdir test
+```
+- *copy the .bash_history file to this directory while changing its name to labwork2;
+```
+tester@test1:~$ cp .bash_history test/labwork2
+```
+- *create a hard and soft link to the labwork2 file in the test subdirectory;
+```
+tester@test1:~$ ln test/labwork2 test/hard_labwork2
+tester@test1:~$ ln -s labwork2 test/sym_labwork2
+```
+- *how to define soft and hard link, what do these concepts;
+Difference between hard and soft link is clearly shown below in the ***ls -ali*** command output.
+Hard link points at the same index in filesystem 525213 that original file and both of them don't depends each other and work directly with data on drive
+Symbolic link is only pointer to original file which depends on any actions that are made with this original file
+```
+tester@test1:~$ ls -lai test
+total 16
+521876 drwxrwxr-x 2 tester tester 4096 Jan 17 23:05 .
+519176 drwxr-xr-x 5 tester tester 4096 Jan 17 23:00 ..
+525213 -rw------- 2 tester tester   38 Jan 17 23:00 hard_labwork2
+525213 -rw------- 2 tester tester   38 Jan 17 23:00 labwork2
+525215 lrwxrwxrwx 1 tester tester   13 Jan 17 23:00 sym_labwork2 -> labwork2
+```
+- *change the data by opening a symbolic link. What changes will happen and why
+In this case both original file and hardlink are changed because file on disk was changed through symlink and original file
+```
+tester@test1:~$ echo 'everything will be changed' >> test/sym_labwork2
+tester@test1:~$ ls -lai test
+total 16
+521876 drwxrwxr-x 2 tester tester 4096 Jan 17 23:20 .
+519176 drwxr-xr-x 5 tester tester 4096 Jan 17 23:20 ..
+525213 -rw------- 2 tester tester   65 Jan 17 23:21 hard_labwork2
+525213 -rw------- 2 tester tester   65 Jan 17 23:21 labwork2
+525212 lrwxrwxrwx 1 tester tester    8 Jan 17 23:00 sym_labwork2 -> labwork2
+```
+- *rename the hard link file to hard_lnk_labwork2;
+```
+tester@test1:~$ mv test/hard_labwork2 test/hard_lnk_labwork2
+```
+- *rename the soft link file to symb_lnk_labwork2 file;
+```
+tester@test1:~$ mv test/sym_labwork2 test/symb_lnk_labwork2
+```
+- *then delete the labwork2. What changes have occurred and why?
+```
+tester@test1:~$ rm -rf test/labwork2
+```
+Was got the following results:
+```
+tester@test1:~$ ls -lai test
+total 12
+521876 drwxrwxr-x 2 tester tester 4096 Jan 17 23:31 .
+519176 drwxr-xr-x 5 tester tester 4096 Jan 17 23:20 ..
+525213 -rw------- 1 tester tester   65 Jan 17 23:21 hard_lnk_labwork2
+525212 lrwxrwxrwx 1 tester tester    8 Jan 17 23:19 symb_lnk_labwork2 -> labwork2
+```
+Hardlink is still accessible because index is still alive and data on disk exists
+Symlink is marked as not working and data can't be accessible via this link because original file doesn't exist and symlink points to data through this file.
 
 
-7) Using the locate utility, find all files that contain the squid and traceroute sequence.
+7) *Using the locate utility, find all files that contain the squid and traceroute sequence.
+```
+root@test1:~# updatedb
+root@test1:~# locate squid traceroute
+/etc/alternatives/traceroute6
+/etc/alternatives/traceroute6.8.gz
+/lib/modules/4.15.0-132-generic/kernel/drivers/tty/n_tracerouter.ko
+/usr/bin/traceroute6
+/usr/bin/traceroute6.iputils
+/usr/share/lxc/hooks/squid-deb-proxy-client
+/usr/share/man/man8/traceroute6.8.gz
+/usr/share/man/man8/traceroute6.iputils.8.gz
+/usr/share/sosreport/sos/plugins/squid.py
+/usr/share/sosreport/sos/plugins/__pycache__/squid.cpython-36.pyc
+/usr/share/vim/vim80/syntax/squid.vim
+/var/lib/dpkg/alternatives/traceroute6
+```
 
+8) *Determine which partitions are mounted in the system, as well as the types of these partitions.
 
-8) Determine which partitions are mounted in the system, as well as the types of these partitions.
+As you may see in the output of commnads below there are two partitions on disk one is being used by GRUB and second, formatted in ext4 is mouned as root on the virtual machine.
+```
+root@test1:~# fdisk -l
+Disk /dev/sda: 10.1 GiB, 10887241728 bytes, 21264144 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: BB712612-A595-49DC-93A8-0D6DEA923357
+
+Device     Start      End  Sectors  Size Type
+/dev/sda1   2048     4095     2048    1M BIOS boot
+/dev/sda2   4096 21260287 21256192 10.1G Linux filesystem
+root@test1:~# df -Th
+Filesystem     Type      Size  Used Avail Use% Mounted on
+udev           devtmpfs  462M     0  462M   0% /dev
+tmpfs          tmpfs      99M  724K   98M   1% /run
+/dev/sda2      ext4       10G  3.8G  5.7G  40% /
+tmpfs          tmpfs     493M     0  493M   0% /dev/shm
+tmpfs          tmpfs     5.0M     0  5.0M   0% /run/lock
+tmpfs          tmpfs     493M     0  493M   0% /sys/fs/cgroup
+tmpfs          tmpfs      99M     0   99M   0% /run/user/1000
+tmpfs          tmpfs      99M     0   99M   0% /run/user/0
+```
 
 
 9) Count the number of lines containing a given sequence of characters in a given file.
 
+Command below counts lines in the /var/log/dpkg.log file which contain the 'unpacked' substring
+```
+root@test1:~# grep unpacked /var/log/dpkg.log | wc -l
+3122
+```
+
 
 10) Using the find command, find all files in the /etc directory containing the host character sequence.
 
+```
+find /etc -type f -exec grep -l 'host' {} +;
+```
 
 11) List all objects in /etc that contain the ss character sequence. How can I duplicate a similar command using a bunch of grep?
+
+```
+find /etc -exec grep -l 'ss' {} +;
+```
 
 
 12) Organize a screen-by-screen print of the contents of the /etc directory. Hint: You must use stream redirection operations.
 
+```
+```
 
 13) What are the types of devices and how to determine the type of device? Give examples.
 
