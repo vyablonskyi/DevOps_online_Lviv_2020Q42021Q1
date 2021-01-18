@@ -383,7 +383,7 @@ tmpfs          tmpfs      99M     0   99M   0% /run/user/0
 ```
 
 
-9) Count the number of lines containing a given sequence of characters in a given file.
+9) *Count the number of lines containing a given sequence of characters in a given file.
 
 Command below counts lines in the /var/log/dpkg.log file which contain the 'unpacked' substring
 ```
@@ -392,31 +392,128 @@ root@test1:~# grep unpacked /var/log/dpkg.log | wc -l
 ```
 
 
-10) Using the find command, find all files in the /etc directory containing the host character sequence.
+10) *Using the find command, find all files in the /etc directory containing the host character sequence.
 
 ```
 find /etc -type f -exec grep -l 'host' {} +;
 ```
 
-11) List all objects in /etc that contain the ss character sequence. How can I duplicate a similar command using a bunch of grep?
+11) *List all objects in /etc that contain the ss character sequence. How can I duplicate a similar command using a bunch of grep?
 
 ```
 find /etc -exec grep -l 'ss' {} +;
 ```
+the same results will be got by running the following command:
+```
+grep -r -l 'ss' /etc/*
+```
 
+12) *Organize a screen-by-screen print of the contents of the /etc directory. Hint: You must use stream redirection operations.
 
-12) Organize a screen-by-screen print of the contents of the /etc directory. Hint: You must use stream redirection operations.
 
 In the ssh session there was run the following command:
 ```
 root@test1:~# ls -la /etc > /dev/tty1
 ```
-In the tty1 console appeared the [output](screensots/002.JPG)
-
-13) What are the types of devices and how to determine the type of device? Give examples.
+In the tty1 console appeared the [output](screenshots/002.JPG)
 
 
-14) How to determine the type of file in the system, what types of files are there?
+
+13) *What are the types of devices and how to determine the type of device? Give examples.
+
+There are four type of devices:
+- character
+- block
+- pipe
+- socket
+Each device has appropriate file in /dev directory and according to the file type device belongs to one of the devices type
+
+It is possible to determine name of devices in the system by using the hwinfo utility:
+```
+root@test1:~# hwinfo --short
+cpu:
+                       AMD A6-3500 APU with Radeon(tm) HD Graphics, 2096 MHz
+keyboard:
+  /dev/input/event2    AT Translated Set 2 keyboard
+mouse:
+  /dev/input/mice      VirtualBox USB Tablet
+  /dev/input/mice      Mouse
+graphics card:
+                       VMware VMWARE0405
+sound:
+                       Intel 82801AA AC'97 Audio Controller
+storage:
+                       Intel 82801HM/HEM (ICH8M/ICH8M-E) SATA Controller [AHCI mode]
+                       Intel 82371AB/EB/MB PIIX4 IDE
+network:
+  enp0s3               Intel PRO/1000 MT Desktop Adapter
+  /dev/input/event6    OSA Express Network card
+network interface:
+  lo                   Loopback network interface
+  enp0s3               Ethernet network interface
+disk:
+  /dev/sda             VBOX HARDDISK
+partition:
+  /dev/sda1            Partition
+  /dev/sda2            Partition
+cdrom:
+  /dev/sr0             VBOX CD-ROM
+usb controller:
+                       Apple KeyLargo/Intrepid USB
+bios:
+                       BIOS
+bridge:
+                       Intel 82371SB PIIX3 ISA [Natoma/Triton II]
+                       Intel 82371AB/EB/MB PIIX4 ACPI
+                       Intel 440FX - 82441FX PMC [Natoma]
+hub:
+                       Linux Foundation 1.1 root hub
+memory:
+                       Main Memory
+unknown:
+                       FPU
+                       DMA controller
+                       PIC
+                       Keyboard controller
+                       PS/2 Controller
+  /dev/input/event6    InnoTek Systemberatung VirtualBox Guest Service
+```
+Then it is possible to review appropriate file for each device:
+```
+root@test1:~# ls -l /dev/input/mice
+crw-rw---- 1 root input 13, 63 Jan 17 18:16 /dev/input/mice
+root@test1:~# ls -l /dev/sda2
+brw-rw---- 1 root disk 8, 2 Jan 17 23:42 /dev/sda2
+```
 
 
-15) * List the first 5 directory files that were recently accessed in the /etc directory.
+14) *How to determine the type of file in the system, what types of files are there?
+
+Type of files may be determined by the first symbol of the ***ls -l*** command output
+There are the following files in Linux:
+- Regular file (-) 
+- Directory files (d) 
+- Block file (b)
+- Character device file (c)
+- Pipe file (p)
+- Symbolic link file (l)
+- Socket file (s)
+
+
+15) *List the first 5 directory files that were recently accessed in the /etc directory.
+
+```
+root@test1:~# ls -ltr /etc | grep ^d| tail -5
+drwxr-xr-x 2 root root       4096 Jan 17 18:13 cron.daily
+drwxr-xr-x 2 root root       4096 Jan 17 18:13 logrotate.d
+drwxr-xr-x 2 root root       4096 Jan 17 18:14 vim
+drwxr-xr-x 2 root root       4096 Jan 17 18:14 python3.6
+drwxr-xr-x 2 root root       4096 Jan 17 18:42 ssh
+
+root@test1:~# ls -ltr /etc | grep ^-| tail -5
+-rw-r--r-- 1 root root       9395 Jan 17 18:17 locale.gen
+-rw-r----- 1 root shadow     1023 Jan 17 19:04 shadow-
+-rw-r----- 1 root shadow     1026 Jan 17 19:06 shadow
+-rw-r--r-- 1 root root       1561 Jan 17 21:25 passwd-
+-rw-r--r-- 1 root root       1568 Jan 17 21:26 passwd
+```
