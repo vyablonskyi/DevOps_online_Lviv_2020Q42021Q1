@@ -407,8 +407,11 @@ find /etc -exec grep -l 'ss' {} +;
 
 12) Organize a screen-by-screen print of the contents of the /etc directory. Hint: You must use stream redirection operations.
 
+In the ssh session there was run the following command:
 ```
+root@test1:~# ls -la /etc > /dev/tty1
 ```
+In the tty1 console appeared the [output](screensots/002.JPG)
 
 13) What are the types of devices and how to determine the type of device? Give examples.
 
