@@ -331,7 +331,7 @@ total 12
 521876 drwxrwxr-x 2 tester tester 4096 Jan 17 23:31 .
 519176 drwxr-xr-x 5 tester tester 4096 Jan 17 23:20 ..
 525213 -rw------- 1 tester tester   65 Jan 17 23:21 hard_lnk_labwork2
-525212 lrwxrwxrwx 1 tester tester    8 Jan 17 23:19 symb_lnk_labwork2 -> labwork2
+525212 lrwxrwxrwx 1 tester tester    8 Jan 17 23:00 symb_lnk_labwork2 -> labwork2
 ```
 Hardlink is still accessible because index is still alive and data on disk exists
 Symlink is marked as not working and data can't be accessible via this link because original file doesn't exist and symlink points to data through this file.
