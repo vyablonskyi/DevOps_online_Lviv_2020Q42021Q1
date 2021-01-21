@@ -1,7 +1,7 @@
 ***Task 5.2.***
 
 
-1) *Analyze the structure of the /etc/passwd and /etc/group file, what fields are present in it, what users exist on the system? Specify several pseudo-users, how to define them?
+1) *Analyze the structure of the /etc/passwd and /etc/group file, what fields are present in it, what users exist on the system? Specify several pseudo-users, how to define them?*
 
 The **/etc/passwd** file contains information about the users registered in system.
 Each string in this file consists of 7 fields separated by the ":" symbol 
@@ -40,7 +40,7 @@ All users on the system can be devided on three groups: superuser - root, pseudo
 - real users: regular users
 
 
-2) *What are the uid ranges? What is UID? How to define it?
+2) *What are the uid ranges? What is UID? How to define it?*
 
 UID is the number that uniquelly identifies user in the system
 There are three UID ranges:
@@ -51,12 +51,12 @@ There are three UID ranges:
 UID may be defined by editing the **/etc/passwd** file or by runnind  **useradd** or **adduser** or **usermod** commands.
 
 
-3) *What is GID? How to define it?
+3) *What is GID? How to define it?*
 
 GID is the nubber that uniquelly identifies group in the system
 GID may be defined by editing the **/etc/group** file or by runnind the **groupadd** command or by creating new user via running **useradd** or **adduser** commands or by editing group via running the **groupmod** command.
 
-4) *How to determine belonging of user to the specific group?
+4) *How to determine belonging of user to the specific group?*
 
 GIDs of all groups that user belongs to may be determine by running the **id** command:
 ```
@@ -66,7 +66,7 @@ uid=1000(tester) gid=1000(tester) groups=1000(tester),4(adm),24(cdrom),27(sudo),
 also it is possible to check record of the appropriate group in the **/etc/group** file
 
 
-5) *What are the commands for adding a user to the system? What are the basic parameters required to create a user?
+5) *What are the commands for adding a user to the system? What are the basic parameters required to create a user?*
 
 New user can be add to the system by running **useradd** or **adduser** command or by editing the /etc/passwd file in case of adduser home dir for the new user will be created automatically.
 
@@ -95,7 +95,7 @@ root@test1:~#
 ```
 
 
-6) *How do I change the name (account name) of an existing user?
+6) *How do I change the name (account name) of an existing user?*
 
 As in the example below, login can be changed by the **usermod** commad with the **-l** key
 
@@ -109,7 +109,7 @@ root@test1:~#
 ```
 
 
-7) *What is skell_dir? What is its structure?
+7) *What is skell_dir? What is its structure?*
 
 
 
