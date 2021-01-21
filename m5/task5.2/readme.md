@@ -4,7 +4,7 @@
 1) *Analyze the structure of the /etc/passwd and /etc/group file, what fields are present in it, what users exist on the system? Specify several pseudo-users, how to define them?
 
 The **/etc/passwd** file contains information about the users registered in system.
-Each string in this file consists of 7 fields separated by the **:** symbol 
+Each string in this file consists of 7 fields separated by the ":" symbol 
 
 Below is example of the string and description of each parameter.
 ```
