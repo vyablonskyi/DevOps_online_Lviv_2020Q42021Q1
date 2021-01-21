@@ -1,7 +1,7 @@
 ***Task 5.2.***
 
 
-*1) *Analyze the structure of the /etc/passwd and /etc/group file, what fields are present in it, what users exist on the system? Specify several pseudo-users, how to define them?
+1) *Analyze the structure of the /etc/passwd and /etc/group file, what fields are present in it, what users exist on the system? Specify several pseudo-users, how to define them?
 
 The **/etc/passwd** file contains information about the users registered in system.
 Each string in this file consists of 7 fields separated by the **:** symbol 
@@ -14,14 +14,45 @@ field number | example | description
 --- | --- | ----
 1 | tester | username (logname)
 2 | x |  information used to validate a user's password; it may be "x" or "\*" or "\*NP*" or a cryptographic hash of the password
-3 | 1000 | user identifier number.
+3 | 1000 | user identifier number
 4 | 1000 | group identifier number
 5 | first Tester, laborathory 543 |Gecos field, commentary that describes the person or account
 6 | /home/tester | Path to the user's home directory.
 7 | /bin/bash | program that is started every time the user logs into the system
 
+The **/etc/group** file contains information about the groups registered in system.
+Each string in this file consists of 4 fields separated by the **:** symbol 
+
+Below is example of the string and description of each parameter.
+```
+sudo:x:27:tester,second
+```
+field number | example | description
+--- | --- | ----
+1 | sudo | groupname
+2 | x |  group password
+3 | 27 | group identifier number
+4 | tester,second | list of users in group
+
+All users on the system can be devided on three groups: superuser - root, pseudo-users, real users
+- superuser "root" has all possible permissions on the system UID of yhis user should be 0
+- pseudo-users: special users that are ownerships of processes, theit UIDS are in 1-999 range, **sshd**, **mail**, **proxy**, are pseudo-users 
+- real users: regular users, their UIDs start from 1000
+
 
 2) *What are the uid ranges? What is UID? How to define it?
+
+UID is the number that uniquelly identifies user in the system
+There are three UID ranges:
+- 0: UID for root
+- 1-999: UIDs for pseudo users
+- 1000-2^32(in most current OS): UIDs for regular users
+
+The easiest way to define UID of some user is using the **id** command:
+```
+# id proxy
+uid=13(proxy) gid=13(proxy) groups=13(proxy)
+```
 
 
 3) *What is GID? How to define it?
