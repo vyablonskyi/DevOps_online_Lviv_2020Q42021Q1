@@ -21,7 +21,7 @@ field number | example | description
 7 | /bin/bash | program that is started every time the user logs into the system
 
 The **/etc/group** file contains information about the groups registered in system.
-Each string in this file consists of 4 fields separated by the **:** symbol 
+Each string in this file consists of 4 fields separated by the ":" symbol 
 
 Below is example of the string and description of each parameter.
 ```
@@ -35,9 +35,9 @@ field number | example | description
 4 | tester,second | list of users in group
 
 All users on the system can be devided on three groups: superuser - root, pseudo-users, real users
-- superuser "root" has all possible permissions on the system UID of yhis user should be 0
-- pseudo-users: special users that are ownerships of processes, theit UIDS are in 1-999 range, **sshd**, **mail**, **proxy**, are pseudo-users 
-- real users: regular users, their UIDs start from 1000
+- superuser "root" has all possible permissions on the system
+- pseudo-users: special users that are ownerships of processes, **sshd**, **mail**, **proxy**, are pseudo-users 
+- real users: regular users
 
 
 2) *What are the uid ranges? What is UID? How to define it?
@@ -48,26 +48,70 @@ There are three UID ranges:
 - 1-999: UIDs for pseudo users
 - 1000-2^32(in most current OS): UIDs for regular users
 
-The easiest way to define UID of some user is using the **id** command:
-```
-# id proxy
-uid=13(proxy) gid=13(proxy) groups=13(proxy)
-```
+UID may be defined by editing the **/etc/passwd** file or by runnind  **useradd** or **adduser** or **usermod** commands.
 
 
 3) *What is GID? How to define it?
 
+GID is the nubber that uniquelly identifies group in the system
+GID may be defined by editing the **/etc/group** file or by runnind the **groupadd** command or by creating new user via running **useradd** or **adduser** commands or by editing group via running the **groupmod** command.
 
 4) *How to determine belonging of user to the specific group?
+
+GIDs of all groups that user belongs to may be determine by running the **id** command:
+```
+root@test1:~# id tester
+uid=1000(tester) gid=1000(tester) groups=1000(tester),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),108(lxd)
+```
+also it is possible to check record of the appropriate group in the **/etc/group** file
 
 
 5) *What are the commands for adding a user to the system? What are the basic parameters required to create a user?
 
+New user can be add to the system by running **useradd** or **adduser** command or by editing the /etc/passwd file in case of adduser home dir for the new user will be created automatically.
+
+Bellow there is example of creating new user **second** and adding it to existed the **testers** group
+```
+root@test1:~# adduser --gid 1000  second
+Adding user `second' ...
+Adding new user `second' (1001) with group `testers' ...
+Creating home directory `/home/second' ...
+Copying files from `/etc/skel' ...
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+Changing the user information for second
+Enter the new value, or press ENTER for the default
+        Full Name []: Second Tester
+        Room Number []: 345
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n] Y
+root@test1:~# id second
+uid=1001(second) gid=1000(testers) groups=1000(testers)
+root@test1:~#
+
+```
+
 
 6) *How do I change the name (account name) of an existing user?
 
+As in the example below, login can be changed by the **usermod** commad with the **-l** key
+
+```
+root@test1:~# id matrix
+uid=1002(matrix) gid=1000(testers) groups=1000(testers)
+root@test1:~# usermod -l third matrix
+root@test1:~# id third
+uid=1002(third) gid=1000(testers) groups=1000(testers)
+root@test1:~#
+```
+
 
 7) *What is skell_dir? What is its structure?
+
+
 
 
 8) *How to remove a user from the system (including his mailbox)?
