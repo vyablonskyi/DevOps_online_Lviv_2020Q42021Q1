@@ -147,7 +147,7 @@ root@test1:~# passwd -d -e second
 passwd: password expiry information changed.
 root@test1:~#
 ```
-resuls may be seen [here](screenshot/001.JPG)
+resuls may be seen [here](screenshots/001.JPG)
 
 
 11) *Display the extended format of information about the directory, tell about the information columns displayed on the terminal.
