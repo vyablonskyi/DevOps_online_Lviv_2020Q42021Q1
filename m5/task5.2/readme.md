@@ -150,19 +150,61 @@ root@test1:~#
 resuls may be seen [here](screenshots/001.JPG)
 
 
-11) *Display the extended format of information about the directory, tell about the information columns displayed on the terminal.
+11) *Display the extended format of information about the directory, tell about the information columns displayed on the terminal.*
+
+Bellow is presented example of output of the **ls -al** command there is shown the /home/second folder:
+```
+drwxr-xr-x  4 second testers 4096 Jan 22 21:22 second
+```
+This output contain a few fields that described below
+
+field number | example | description
+--- | --- | ----
+1 | d | The  character that identifies the file type (d means directory)
+2 | rxx | owner permissions
+3 | r-x | group permissions
+4 | r-x | other users permissions
+5 | 4 | hard link counts
+6 | second | owner name
+7 | testers | group name
+8 | 4096 | size of space on the disk that is used to store the meta-information for the directory
+9 | Jan 22 21:22 | Date and time when the folder was modify last time
+10 | second | folder name
 
 
-12) *What access rights exist and for whom (i. e., describe the main roles)? Briefly describe the acronym for access rights.
+12) *What access rights exist and for whom (i. e., describe the main roles)? Briefly describe the acronym for access rights.*
+
+Access rights contain three sections that describe owner of file/folder, group that owns file/folder and all other users. For each section rights represented by three symbols: **rwx** with the following meaning:
+- r - read permissions
+- w - write permissions
+- x - execute permissions
 
 
-13) *What is the sequence of defining the relationship between the file and the user?
+13) *What is the sequence of defining the relationship between the file and the user?*
 
 
-14) *What commands are used to change the owner of a file (directory), as well as the mode of access to the file? Give examples, demonstrate on the terminal.
+14) *What commands are used to change the owner of a file (directory), as well as the mode of access to the file? Give examples, demonstrate on the terminal.*
+
+Owner of the file can be changed bu the **chown** command:
+```
+root@test1:/tmp# ls -la testfile
+-rw-r--r-- 1 second testers 41 Jan 22 22:44 testfile
+root@test1:/tmp# chown tester testfile
+root@test1:/tmp# ls -la testfile
+-rw-r--r-- 1 tester testers 41 Jan 22 22:44 testfile
+root@test1:/tmp#
+```
+access mode can be modify by the **chmod** command:
+```
+root@test1:/tmp# chmod 755 testfile
+root@test1:/tmp# ls -la testfile
+-rwxr-xr-x 1 tester testers 41 Jan 22 22:44 testfile
+```
 
 
 15) *What is an example of octal representation of access rights? Describe the umask command.
+
+
 
 
 16) *Give definitions of sticky bits and mechanism of identifier substitution. Give an example of files and directories with these attributes.
