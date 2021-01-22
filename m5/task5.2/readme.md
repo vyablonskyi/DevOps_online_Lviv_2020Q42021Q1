@@ -13,7 +13,7 @@ tester:x:1000:1000:first Tester, laborathory 543:/home/tester:/bin/bash
 field number | example | description
 --- | --- | ----
 1 | tester | username (logname)
-2 | x |  information used to validate a user's password; it may be "x" or "\*" or "\*NP*" or a cryptographic hash of the password
+2 | x |  information used to validate a user's password
 3 | 1000 | user identifier number
 4 | 1000 | group identifier number
 5 | first Tester, laborathory 543 |Gecos field, commentary that describes the person or account
@@ -124,7 +124,7 @@ drwxr-xr-x 91 root root 4096 Jan 21 21:48 ..
 ```
 
 
-8) *How to remove a user from the system (including his mailbox)?
+8) *How to remove a user from the system (including his mailbox)?*
 
 User and his mailbox can be removed from the system by running **userdel** command with the **-r** key:
 ```
@@ -133,12 +133,21 @@ userdel: third mail spool (/var/mail/third) not found
 ```
 
 
-9) *What commands and keys should be used to lock and unlock a user account?
+9) *What commands and keys should be used to lock and unlock a user account?*
+
+Users account can be locked by running the **usermod -L** or **passwd -l** command.
+Account can be unlocked by the **usermod -U** or **passwd -u** command.
 
 
+10)*How to remove a user's password and provide him with a password-free login for subsequent password change?*
 
-
-10)*How to remove a user's password and provide him with a password-free login for subsequent password change?
+This can be dome by running the **passwd -d -e** command:
+```
+root@test1:~# passwd -d -e second
+passwd: password expiry information changed.
+root@test1:~#
+```
+resuls may be seen [here](screenshot/001.JPG)
 
 
 11) *Display the extended format of information about the directory, tell about the information columns displayed on the terminal.
