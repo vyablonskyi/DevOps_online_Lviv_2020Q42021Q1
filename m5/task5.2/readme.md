@@ -36,7 +36,7 @@ field number | example | description
 
 All users on the system can be devided on three groups: superuser - root, pseudo-users, real users
 - superuser "root" has all possible permissions on the system
-- pseudo-users: special users that are ownerships of processes, **sshd**, **mail**, **proxy**, are pseudo-users 
+- pseudo-users: special users that are ownerships of processes. The **sshd**, **mail**, **proxy** are pseudo-users. 
 - real users: regular users
 
 
@@ -111,13 +111,31 @@ root@test1:~#
 
 7) *What is skell_dir? What is its structure?*
 
-
+The **/etc/skel** directory contains files and directories that are automatically copied over to a new user's hone when it is created.
+In case of Ubuntu 18 there is the following structure of this folder:
+```
+root@test1:~# ls -la /etc/skel
+total 20
+drwxr-xr-x  2 root root 4096 Aug  6 22:37 .
+drwxr-xr-x 91 root root 4096 Jan 21 21:48 ..
+-rw-r--r--  1 root root  220 Apr  4  2018 .bash_logout
+-rw-r--r--  1 root root 3771 Apr  4  2018 .bashrc
+-rw-r--r--  1 root root  807 Apr  4  2018 .profile
+```
 
 
 8) *How to remove a user from the system (including his mailbox)?
 
+User and his mailbox can be removed from the system by running **userdel** command with the **-r** key:
+```
+root@test1:~# userdel -r third
+userdel: third mail spool (/var/mail/third) not found
+```
+
 
 9) *What commands and keys should be used to lock and unlock a user account?
+
+
 
 
 10)*How to remove a user's password and provide him with a password-free login for subsequent password change?
