@@ -204,6 +204,24 @@ root@test1:/tmp# ls -la testfile
 
 15) *What is an example of octal representation of access rights? Describe the umask command.
 
+Rights can be represented in octal form which is based on the binary system and can be described by the following table:
+rwx form | octal form
+--- | ---
+rwx | 7
+rw- | 6
+r-x | 5
+r-- | 4
+-wx | 3
+-w- | 2
+--x | 1
+--- | 0
+
+All new files are created with a default set of permissions. The **umask** command shows or set the file mode creation mask.
+```
+# umask
+0022
+```
+
 
 
 
