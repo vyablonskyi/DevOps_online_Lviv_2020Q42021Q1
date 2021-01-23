@@ -182,6 +182,9 @@ Access rights contain three sections that describe owner of file/folder, group t
 
 13) *What is the sequence of defining the relationship between the file and the user?*
 
+Firstly there should be defined if the user is the owner of file, if yes, on the file may be performed all actions that are allowed by the owner rights.
+If user isn't owner there should be checked if the user is added to the group that set as groupfor this file if yes actions that aloowed for the  group may be performed.
+Otherwise there can be performed actions that are allowed for other users.
 
 14) *What commands are used to change the owner of a file (directory), as well as the mode of access to the file? Give examples, demonstrate on the terminal.*
 
@@ -202,7 +205,7 @@ root@test1:/tmp# ls -la testfile
 ```
 
 
-15) *What is an example of octal representation of access rights? Describe the umask command.
+15) *What is an example of octal representation of access rights? Describe the umask command.*
 
 Rights can be represented in octal form which is based on the binary system and can be described by the following table:
 rwx form | octal form
@@ -223,9 +226,30 @@ All new files are created with a default set of permissions. The **umask** comma
 ```
 
 
+16) *Give definitions of sticky bits and mechanism of identifier substitution. Give an example of files and directories with these attributes.*
+
+By using the **chmod** command can be set 4-bytes-long paramether for each file the last 3 bytes set permisions for owner, group and other users ans the firt byte can be **0** or a combination of 4 for **SUID**, 2 for **SGID** and 1 for **Sticky Bit**. 
+- SUID bit can be set on an executable file, it means that the file will be executed with the same permissions as the owner of the executable file
+```
+root@test1:~# ls -la /usr/bin/passwd
+-rwsr-xr-x 1 root root 59640 Mar 22  2019 /usr/bin/passwd
+```
+- SGID allows any user to execute files with the same permissions as the owne group. In case the SGID applied to some directory all subfolders and files that will be created inside will get the same group ownership as main directory
+```
+root@test1:~# ls -la /usr/bin/crontab
+-rwxr-sr-x 1 root crontab 39352 Nov 16  2017 /usr/bin/crontab
+```
+- Sticky Bit is used for folders to get them and their content avoid being deleted. Folder and all inside can be deleted only by owner or root.
+```
+root@test1:~# ls -al /var
+...
+drwxrwxrwt  2 root root   4096 Jan 22 09:01 crash
+...
+drwxrwxrwt  4 root root   4096 Jan 22 16:56 tmp
+```
 
 
-16) *Give definitions of sticky bits and mechanism of identifier substitution. Give an example of files and directories with these attributes.
+17) *What file attributes should be present in the command script?*
 
+Command script should have **f** attribute that shows that file exists and is a regular file also the should have readable **r** and executable **x** attributes at least for the one permissions group.
 
-17) *What file attributes should be present in the command script?
