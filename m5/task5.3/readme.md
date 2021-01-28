@@ -96,11 +96,45 @@ root         9  0.0  0.0      0     0 ?        I    11:00   0:00 [rcu_bh]
 ```
 
 
-7. Print the list of processes to the terminal. Briefly describe the statuses of the processes. What condition are they in, or can they be arriving in?
+7. *Print the list of processes to the terminal. Briefly describe the statuses of the processes. What condition are they in, or can they be arriving in?*
+
+The ***ps*** command describes status of each process by the following codes:
+- D - uninterruptible sleep (usually IO)
+- R - running or runnable (on run queue)
+- S - interruptible sleep (waiting for an event to complete)
+- T - stopped by job control signal
+- t - stopped by debugger during the tracing
+- W - paging (not valid since the 2.6.xx kernel)
+- X - dead (should never be seen)
+- Z - defunct ("zombie") process, terminated but not reaped by its parent
+
+For BSD formats and when the stat keyword is used, additional characters may also be displayed:
+ - < - high-priority (not nice to other users)
+ - N - low-priority (nice to other users)
+ - L - has pages locked into memory (for real-time and custom IO)
+ - s - is a session leader
+ - l - is multi-threaded (using CLONE_THREAD, like NPTL pthreads do)
+ - + - is in the foreground process group
+
+Below is the list of processs that are run under root SSH session where the ps command has been run:
+```
+root@test1:~# ps a
+  PID TTY      STAT   TIME COMMAND
+  870 tty1     Ss     0:00 /bin/login -p --
+11541 tty1     S+     0:00 -bash
+11705 pts/0    Ss     0:00 -bash
+12046 pts/0    R+     0:00 ps a
+
+```
+Three processes are sleeping and one is running.
+
+
+8. *Display only the processes of a specific user.*
 
 
 
-8. Display only the processes of a specific user. 9. What utilities can be used to analyze existing running tasks (by analyzing the help for the ps command)?
+
+9. *What utilities can be used to analyze existing running tasks (by analyzing the help for the ps command)?*
 
 
 
