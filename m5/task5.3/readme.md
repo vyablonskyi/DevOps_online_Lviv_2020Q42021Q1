@@ -3,8 +3,18 @@
 
 1. *How many states could has a process in Linux?*
 
+Processes can be at one of the following six states:
+- created
+- ready
+- running
+- waiting
+- zombie
+- terminated
+
 
 2. *Examine the pstree command. Make output (highlight) the chain (ancestors) of the current process.*
+
+
 
 
 3. *What is a proc file system? 4. Print information about the processor (its type, supported technologies, etc.).*
