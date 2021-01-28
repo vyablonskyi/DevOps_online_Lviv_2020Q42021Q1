@@ -14,7 +14,7 @@ Processes can be at one of the following six states:
 
 2. *Examine the pstree command. Make output (highlight) the chain (ancestors) of the current process.*
 
-
+The ***-h*** key of the ***pstree*** command provides the [output](screenshotts/001.JPG) wish highlighted chain of current process.
 
 
 3. *What is a proc file system? 4. Print information about the processor (its type, supported technologies, etc.).*
