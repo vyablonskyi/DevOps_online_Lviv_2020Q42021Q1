@@ -131,27 +131,114 @@ Three processes are sleeping and one is running.
 
 8. *Display only the processes of a specific user.*
 
-
+Below presented all processes that was running under the "tester" user at the moment of checking:
+```
+root@test1:~# ps aux | grep ^tester
+tester   12264  0.0  0.7  76684  7672 ?        Ss   20:23   0:00 /lib/systemd/systemd --user
+tester   12265  0.0  0.2 111684  2336 ?        S    20:23   0:00 (sd-pam)
+tester   12275  0.0  0.5  21468  5464 tty1     S    20:23   0:00 -bash
+tester   12312  0.0  0.0   6216   836 tty1     S+   20:25   0:00 dd if=/dev/random of=/dev/null
+```
 
 
 9. *What utilities can be used to analyze existing running tasks (by analyzing the help for the ps command)?*
 
+Man of the ***ps*** command recommends also to take a look at the  ***pgrep, pstree, top*** and ***proc*** utilities.
 
 
-10. What information does top command display?
+10. *What information does top command display?*
+
+The ***top*** connamd displays sorted information about currenly running processes in real time, also it shows load average, CPU load, RAM and SWAP usage, time while the OS is up.
 
 
+11. *Display the processes of the specific user using the top command.*
 
-11. Display the processes of the specific user using the top command.
+Below presented output of the ***top -u tester*** command which shows all processes of the ***tester** user:
+```
+top - 20:53:17 up  9:52,  2 users,  load average: 0.02, 0.01, 0.00
+Tasks:  95 total,   1 running,  51 sleeping,   2 stopped,   0 zombie
+%Cpu(s):  0.3 us,  0.3 sy,  0.0 ni, 99.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem :  1008776 total,   116176 free,   113276 used,   779324 buff/cache
+KiB Swap:  2017276 total,  2017008 free,      268 used.   735364 avail Mem
 
-
+  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
+12444 tester    20   0   76688   7728   6688 S  0.0  0.8   0:00.01 systemd
+12445 tester    20   0  111684   2340     84 S  0.0  0.2   0:00.00 (sd-pam)
+12455 tester    20   0   21468   5200   3500 S  0.0  0.5   0:00.05 bash
+12467 tester    20   0    6216    872    808 S  0.0  0.1   0:00.00 dd
+```
 
 12. What interactive commands can be used to control the top command? Give a couple of examples.
 
+I always use the ***"Shift+F"*** hotkeys after the ***top -c*** command is run, this allows to select dditional parameters from the list and select parameter that processes will be sorted by:
+```
+   Navigate with Up/Dn, Right selects for move then <Enter> or Left commits,
+   'd' or <Space> toggles display, 's' sets sort.  Use 'q' or <Esc> to end!
+
+* PID     = Process Id             TGID    = Thread Group Id
+* USER    = Effective User Name    OOMa    = OOMEM Adjustment
+* PR      = Priority               OOMs    = OOMEM Score current
+* NI      = Nice Value             ENVIRON = Environment vars
+* VIRT    = Virtual Image (KiB)    vMj     = Major Faults delta
+* RES     = Resident Size (KiB)    vMn     = Minor Faults delta
+* SHR     = Shared Memory (KiB)    USED    = Res+Swap Size (KiB)
+* S       = Process Status         nsIPC   = IPC namespace Inode
+* %CPU    = CPU Usage              nsMNT   = MNT namespace Inode
+* %MEM    = Memory Usage (RES)     nsNET   = NET namespace Inode
+* TIME+   = CPU Time, hundredths   nsPID   = PID namespace Inode
+* COMMAND = Command Name/Line      nsUSER  = USER namespace Inode
+* PPID    = Parent Process pid     nsUTS   = UTS namespace Inode
+* UID     = Effective User Id      LXC     = LXC container name
+* RUID    = Real User Id           RSan    = RES Anonymous (KiB)
+  RUSER   = Real User Name         RSfd    = RES File-based (KiB)
+* SUID    = Saved User Id          RSlk    = RES Locked (KiB)
+  SUSER   = Saved User Name        RSsh    = RES Shared (KiB)
+  GID     = Group Id               CGNAME  = Control Group name
+* GROUP   = Group Name
+  PGRP    = Process Group Id
+  TTY     = Controlling Tty
+  TPGID   = Tty Process Grp Id
+  SID     = Session Id
+  nTH     = Number of Threads
+  P       = Last Used Cpu (SMP)
+  TIME    = CPU Time
+* SWAP    = Swapped Size (KiB)
+  CODE    = Code Size (KiB)
+  DATA    = Data+Stack (KiB)
+  nMaj    = Major Page Faults
+  nMin    = Minor Page Faults
+  nDRT    = Dirty Pages Count
+  WCHAN   = Sleeping in Function
+  Flags   = Task Flags <sched.h>
+  CGROUPS = Control Groups
+  SUPGIDS = Supp Groups IDs
+  SUPGRPS = Supp Groups Names
+```
 
 
 13. Sort the contents of the processes window using various parameters (for example, the amount of processor time taken up, etc.)
 
+Bellow is the output of the ***top -c** command with added SWAP usage for each process and it is sorted by SWAP usage:
+```
+top - 21:13:33 up 10:12,  2 users,  load average: 0.00, 0.00, 0.00
+Tasks:  95 total,   1 running,  51 sleeping,   2 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.7 sy,  0.0 ni, 99.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem :  1008776 total,   116176 free,   113268 used,   779332 buff/cache
+KiB Swap:  2017276 total,  2017008 free,      268 used.   735372 avail Mem
+
+  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND                                                                                         SWAP
+  853 root      20   0  185948  20016  12120 S  0.0  2.0   0:00.06 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal    36
+    1 root      20   0   77704   8828   6728 S  0.0  0.9   0:01.57 /sbin/init maybe-ubiquity                                                                         0
+    2 root      20   0       0      0      0 S  0.0  0.0   0:00.00 [kthreadd]                                                                                        0
+    4 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 [kworker/0:0H]                                                                                    0
+    6 root       0 -20       0      0      0 I  0.0  0.0   0:00.00 [mm_percpu_wq]                                                                                    0
+    7 root      20   0       0      0      0 S  0.0  0.0   0:00.34 [ksoftirqd/0]                                                                                     0
+    8 root      20   0       0      0      0 I  0.0  0.0   0:08.18 [rcu_sched]                                                                                       0
+    9 root      20   0       0      0      0 I  0.0  0.0   0:00.00 [rcu_bh]                                                                                          0
+   10 root      rt   0       0      0      0 S  0.0  0.0   0:00.00 [migration/0]                                                                                     0
+   11 root      rt   0       0      0      0 S  0.0  0.0   0:00.19 [watchdog/0]                                                                                      0
+   12 root      20   0       0      0      0 S  0.0  0.0   0:00.00 [cpuhp/0]                                                                                         0
+   ```
 
 
 14. Concept of priority, what commands are used to set priority?
