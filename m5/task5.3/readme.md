@@ -168,7 +168,7 @@ KiB Swap:  2017276 total,  2017008 free,      268 used.   735364 avail Mem
 12467 tester    20   0    6216    872    808 S  0.0  0.1   0:00.00 dd
 ```
 
-12. What interactive commands can be used to control the top command? Give a couple of examples.
+12. *What interactive commands can be used to control the top command? Give a couple of examples.*
 
 I always use the ***"Shift+F"*** hotkeys after the ***top -c*** command is run, this allows to select dditional parameters from the list and select parameter that processes will be sorted by:
 ```
@@ -216,9 +216,9 @@ I always use the ***"Shift+F"*** hotkeys after the ***top -c*** command is run, 
 ```
 
 
-13. Sort the contents of the processes window using various parameters (for example, the amount of processor time taken up, etc.)
+13. *Sort the contents of the processes window using various parameters (for example, the amount of processor time taken up, etc.)*
 
-Bellow is the output of the ***top -c** command with added SWAP usage for each process and it is sorted by SWAP usage:
+Bellow is the output of the ***top -c*** command with added SWAP usage for each process and it is sorted by SWAP usage:
 ```
 top - 21:13:33 up 10:12,  2 users,  load average: 0.00, 0.00, 0.00
 Tasks:  95 total,   1 running,  51 sleeping,   2 stopped,   0 zombie
@@ -241,19 +241,64 @@ KiB Swap:  2017276 total,  2017008 free,      268 used.   735372 avail Mem
    ```
 
 
-14. Concept of priority, what commands are used to set priority?
+14. *Concept of priority, what commands are used to set priority?*
+
+All processes in Linux are started by default with the same priority and they are equal. The defauld priority value is 20 and it can be in 0 - 39 range. It is possible to start process with different priority by using the ***nice*** command or change priority of running process by using ***renice*** command or by usyng the ***r*** hotkey during the ***top*** utility is running.
 
 
+15. *Can I change the priority of a process using the top command? If so, how?*
 
-15. Can I change the priority of a process using the top command? If so, how?
+The ***r*** hotkey/command of the ***top*** utility allows to change priority of processes.
+
+After pressing the "r" there will be possible to enter PID and then the value to nice it to. A  positive nice value will cause a process to lose priority, a negative nice value will cause a process to be viewed more prior by the kernel.  Ordinary users can only increase the nice value (make priority lower) and are prevented from lowering it(increase priority).
 
 
-16. Examine the kill command. How to send with the kill command process control signal? Give an example of commonly used signals.
+16. *Examine the kill command. How to send with the kill command process control signal? Give an example of commonly used signals.*
+
+The syntax of the ***kill*** command is:
+```
+kill [OPTIONS] [PID]....
+```
+The ***kill*** command sends a signal to specified processes or process groups and causing them to behave according to the signal. When the signal is not specified, it hs default value ***-15*** (-TERM).
+
+The most commonly used signals are:
+- 1 (HUP) - Reload a process.
+- 9 (KILL) - Kill a process.
+- 15 (TERM) - Gracefully stop a process.
+
+To get a list of all available signals, you should run the command with the ***-l*** option.
 
 
+17. *Commands jobs, fg, bg, nohup. What are they for? Use the sleep, yes command to demonstrate the process control mechanism with fg, bg.*
 
-17. Commands jobs, fg, bg, nohup. What are they for? Use the sleep, yes command to demonstrate the process control mechanism with fg, bg.
+The ***jobs, fg, bg, nohup*** commands are used to manage foregroud/background processes:
+- ***jobs*** command shows list of background processes
+```
+root@test1:~# dd if=/dev/random of=/dev/null &
+[1] 13458
+root@test1:~# jobs
+[1]+  Running                 dd if=/dev/random of=/dev/null &
+root@test1:~#
+```
+- ***bg*** When some process is running it can be stopped and moved to background by pressing the "Ctrl"+"z" and after that the "bg" command is entered the process starts working again.
 
+```
+root@test1:~# yes testdrive >> /dev/null
+^Z
+[1]+  Stopped                 yes testdrive >> /dev/null
+root@test1:~# jobs
+[1]+  Stopped                 yes testdrive >> /dev/null
+root@test1:~# bg
+[1]+ yes testdrive >> /dev/null &
+root@test1:~# jobs
+[1]+  Running                 yes testdrive >> /dev/null &
+root@test1:~#
+```
+- ***fg*** command get the process back to foreground
+```
+
+```
+- ***nohup*** commang allows to run any program after log out or exit from the system
 
 
 
