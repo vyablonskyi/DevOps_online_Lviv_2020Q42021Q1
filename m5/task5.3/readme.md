@@ -317,7 +317,12 @@ root@test1:~#
 
 1. Check the implementability of the most frequently used OPENSSH commands in the MS Windows operating system. (Description of the expected result of the commands + screenshots: command – result should be presented)
 
-Below there is screenshot of the Windows PowerShell where was run 
+Below there is screenshots of the Windows PowerShell where were run most usable by me OPENSSH commands:
+[***ssh***](screenshots/002.JPG) the 192.168.0.106 VPS with Ubuntu18 onboard has been successfully accessed as expected.
+[***ssh-keygen***](screenshots/003.JPG) provate/public keys have been generated as expected
+[***scp***](screenshots/004.JPG) the "testfile.txt" hs been successfully uploaded on the 192.168.0.106 server
+
+I can only confirm that all threee tested commands work as expected
 
 
 2. Implement basic SSH settings to increase the security of the client-server connection (at least 
