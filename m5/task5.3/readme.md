@@ -330,7 +330,7 @@ I can only confirm that all threee tested commands work as expected
 - SSH port on the 192.168.0.106 server has been changed from the ***22*** to ***27517***
 - ***PasswordAuthentication*** has been disabled
 - ***PermitRootLogin*** has been disabled
-After these reconfiguration have been implemented MobaXterm session settings may been seen [in the screenshot](screenshots/006.JPG)
+After these reconfiguration have been implemented MobaXterm session settings may been seen [in the screenshot](screenshots/005.JPG)
 
 
 3. List the options for choosing keys for encryption in SSH. Implement 3 of them.
