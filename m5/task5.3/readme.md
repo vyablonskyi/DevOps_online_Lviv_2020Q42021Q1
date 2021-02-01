@@ -315,18 +315,22 @@ root@test1:~#
 **Part2**
 
 
-1. Check the implementability of the most frequently used OPENSSH commands in the MS Windows operating system. (Description of the expected result of the commands + screenshots: command – result should be presented)
+1. *Check the implementability of the most frequently used OPENSSH commands in the MS Windows operating system. (Description of the expected result of the commands + screenshots: command – result should be presented)*
 
 Below there is screenshots of the Windows PowerShell where were run most usable by me OPENSSH commands:
-[***ssh***](screenshots/002.JPG) the 192.168.0.106 VPS with Ubuntu18 onboard has been successfully accessed as expected.
-[***ssh-keygen***](screenshots/003.JPG) provate/public keys have been generated as expected
-[***scp***](screenshots/004.JPG) the "testfile.txt" hs been successfully uploaded on the 192.168.0.106 server
+- [***ssh***](screenshots/002.JPG) the 192.168.0.106 VPS with Ubuntu18 onboard has been successfully accessed as expected.
+- [***ssh-keygen***](screenshots/003.JPG) provate/public keys have been generated as expected
+- [***scp***](screenshots/004.JPG) the "testfile.txt" hs been successfully uploaded on the 192.168.0.106 server
 
 I can only confirm that all threee tested commands work as expected
 
 
-2. Implement basic SSH settings to increase the security of the client-server connection (at least 
+2. *Implement basic SSH settings to increase the security of the client-server connection*
 
+- SSH port on the 192.168.0.106 server has been changed from the ***22*** to ***27517***
+- ***PasswordAuthentication*** has been disabled
+- ***PermitRootLogin*** has been disabled
+After these reconfiguration have been implemented MobaXterm session settings may been seen [in the screenshot](screenshots/006.JPG)
 
 
 3. List the options for choosing keys for encryption in SSH. Implement 3 of them.
