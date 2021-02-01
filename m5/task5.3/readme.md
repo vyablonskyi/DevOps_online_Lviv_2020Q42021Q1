@@ -298,7 +298,7 @@ root@test1:~#
 ```
 
 ```
-- ***nohup*** commang allows to run any program after log out or exit from the system
+- ***nohup*** command allows to run any program after log out or exit from the system
 
 
 
