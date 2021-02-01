@@ -333,7 +333,7 @@ I can only confirm that all threee tested commands work as expected
 After these reconfiguration have been implemented MobaXterm session settings may been seen [in the screenshot](screenshots/005.JPG)
 
 
-3. List the options for choosing keys for encryption in SSH. Implement 3 of them.
+3. *List the options for choosing keys for encryption in SSH. Implement 3 of them.*
 
 
 
