@@ -296,7 +296,17 @@ root@test1:~#
 ```
 - ***fg*** command get the process back to foreground
 ```
-
+root@test1:~# date
+Mon Feb  1 00:26:15 UTC 2021
+root@test1:~# sleep 30 &
+[1] 14032
+root@test1:~# jobs
+[1]+  Running                 sleep 30 &
+root@test1:~# fg 1
+sleep 30
+root@test1:~# date
+Mon Feb  1 00:26:52 UTC 2021
+root@test1:~#
 ```
 - ***nohup*** command allows to run any program after log out or exit from the system
 
@@ -307,6 +317,7 @@ root@test1:~#
 
 1. Check the implementability of the most frequently used OPENSSH commands in the MS Windows operating system. (Description of the expected result of the commands + screenshots: command – result should be presented)
 
+Below there is screenshot of the Windows PowerShell where was run 
 
 
 2. Implement basic SSH settings to increase the security of the client-server connection (at least 
