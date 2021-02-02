@@ -337,9 +337,11 @@ After these reconfiguration have been implemented MobaXterm session settings may
 
 
 
-4. Implement port forwarding for the SSH client from the host machine to the guest Linux virtual machine behind NAT.
+4. *Implement port forwarding for the SSH client from the host machine to the guest Linux virtual machine behind NAT.*
 
 On the host machine [192.168.0.109](screenshots/006.JPG) there was run second test VPS with the NAT network adapter that was [configured with port forwarding](screenshots/007.JPG) and the 27517 port of the host machine is being forwarded to default 22 SSH port on the guest machine. As you may see in the [screenshot](screenshots/008.JPG) VPS is accessible via SSH smooothly.
 
 
 5*. Intercept (capture) traffic (tcpdump, wireshark) while authorizing the remote client on the server using ssh, telnet, rlogin. Analyze the result.
+
+
