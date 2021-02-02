@@ -351,3 +351,15 @@ To capture traffic on the second server and save it to the ***capture.log*** fil
 tcpdump -i enp0s3 -A 'port 23' > capture.log
 ```
 File is accessible [here](files/capture.log)
+
+This file should be analized. The first thing that we can find there is a string that contains the "login:" substring. Then all strings between this one and the string which contains the "Password:" substring should be carefully analized. The last symbol in each record that describe packet sent from the 192.168.0.105 server to the test1 server should be noted.
+
+Below you may see example of such record where was the ***t*** symbol captured:
+```
+21:19:42.249314 IP 192.168.0.105.41796 > test1.telnet: Flags [P.], seq 77:78, ack 85, win 502, options [nop,nop,TS val 1056598021 ecr 3918676582], length 1
+E..5L.@.@.l     ...i...o.D..O."....D....K......
+>.h...Bft
+```
+So all letters except the last one which appeared as result of pressing  the "Enter" button should be concatenated into username
+
+The same scenario should be used to determine password by analizing all strings between the string with "Password:" substring and string with the "Last login:" substring.
