@@ -342,6 +342,12 @@ After these reconfiguration have been implemented MobaXterm session settings may
 On the host machine [192.168.0.109](screenshots/006.JPG) there was run second test VPS with the NAT network adapter that was [configured with port forwarding](screenshots/007.JPG) and the 27517 port of the host machine is being forwarded to default 22 SSH port on the guest machine. As you may see in the [screenshot](screenshots/008.JPG) VPS is accessible via SSH smooothly.
 
 
-5*. Intercept (capture) traffic (tcpdump, wireshark) while authorizing the remote client on the server using ssh, telnet, rlogin. Analyze the result.
+5. *Intercept (capture) traffic (tcpdump, wireshark) while authorizing the remote client on the server using ssh, telnet, rlogin. Analyze the result.*
 
+There are two VPSes 192.168.0.105 and 192.168.0.111. On the second VPS there was installed and run telnet service and this server is [accessible](screenshots/009.JPG) via 23 port from the first one. For accessing there was used the ***tester*** username and the ***pass** password.
 
+To capture traffic on the second server and save it to the ***capture.log*** file there was run the following command:
+````
+tcpdump -i enp0s3 -A 'port 23' > capture.log
+```
+File is accessible [here](files/capture.log)
