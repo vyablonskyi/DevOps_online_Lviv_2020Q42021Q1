@@ -347,7 +347,7 @@ On the host machine [192.168.0.109](screenshots/006.JPG) there was run second te
 There are two VPSes 192.168.0.105 and 192.168.0.111. On the second VPS there was installed and run telnet service and this server is [accessible](screenshots/009.JPG) via 23 port from the first one. For accessing there was used the ***tester*** username and the ***pass** password.
 
 To capture traffic on the second server and save it to the ***capture.log*** file there was run the following command:
-````
+```
 tcpdump -i enp0s3 -A 'port 23' > capture.log
 ```
 File is accessible [here](files/capture.log)
