@@ -335,7 +335,41 @@ After these reconfiguration have been implemented MobaXterm session settings may
 
 3. *List the options for choosing keys for encryption in SSH. Implement 3 of them.*
 
+For generating pair of keys there can be used the ***ssh-keygen*** command. It can be run with the following keys:
+- t - Specifies the type of key to create.
+- b - Specifies the number of bits in the key to create.
+- a - The option specifies the number of key derivation function rounds used.  Higher numbers result in slower passphrase verification and increased resistance to brute-force password cracking.
+- o - Causes ssh-keygen to save private keys using the new OpenSSH format rather than the more compatible PEM format.
 
+By using these keys there has been generated pair:
+```
+# ssh-keygen -t ed25519  -o -a 250
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/root/.ssh/id_ed25519):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /root/.ssh/id_ed25519.
+Your public key has been saved in /root/.ssh/id_ed25519.pub.
+The key fingerprint is:
+SHA256:sp2btUnow3PmhxkgDNAbzhzfs0Dy+/+mwyj2VT5Ot6s root@lampa.test.net
+The key's randomart image is:
++--[ED25519 256]--+
+|  .o             |
+|    * .          |
+|   + @ .         |
+|    = * +        |
+|      .+S+  .    |
+|      .+.o.o     |
+|      .o+o+++ .  |
+|      o.**B=oo . |
+|     . o=B**E.o. |
++----[SHA256]-----+
+```
+with the foloowing private and public keys:
+```
+-rw-------  1 root root  411 Feb 14 17:34 id_ed25519
+-rw-r--r--  1 root root  101 Feb 14 17:34 id_ed25519.pub
+```
 
 4. *Implement port forwarding for the SSH client from the host machine to the guest Linux virtual machine behind NAT.*
 
