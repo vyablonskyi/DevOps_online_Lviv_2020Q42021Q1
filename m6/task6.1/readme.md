@@ -4,10 +4,10 @@
 On the ***host machine 192.168.0.109*** there in VirtualBox were built two VMs with Ubuntu 18.4 onboard:
 
 1. ***gateway*** with [two network interfaces](screenshots/001.JPG):
-- NAT adapter with IP ***10.0.2.15*** that was assigned by dhcp and where 22 port is being forwrded to 27517 port of host machine 
-- Internal adapter with manually [by netplan](screenshots/002.JPG) configured ***192.168.23.1*** IP address
+  - NAT adapter with IP ***10.0.2.15*** that was assigned by dhcp and where 22 port is being forwrded to 27517 port of host machine 
+  - Internal adapter with manually [by netplan](screenshots/002.JPG) configured ***192.168.23.1*** IP address
 
-2.***localmachine*** with one Internal adapter that configured to get IP address via DHCP
+2. ***localmachine*** with one Internal adapter that configured to get IP address via DHCP
 
 
 On the ***gateway*** machine there was installed ***isc-dhcp-server*** that [is listening on the Internal interface](screenchots/003.JPG) with the simple [dhcpd.conf](screenshot/004.JPG) configuration file.
