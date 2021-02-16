@@ -14,7 +14,7 @@ On the ***gateway*** machine there was installed ***isc-dhcp-server*** that [is 
 
 After running the ```netplan apply``` command on the ***localmachine*** network interface was provided with IP address ***192.168.23.20*** and [other network settings.](screenshots/005.JPG)
 
-As result the ***gateway*** IP address ***192.168.23.1*** [is pingable](screenshots/005.JPG) from the ***localmachine***
+As result the ***gateway*** IP address ***192.168.23.1*** [was got pingable](screenshots/005.JPG) from the ***localmachine***
 
 
 
