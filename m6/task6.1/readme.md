@@ -12,14 +12,11 @@ On the ***host machine 192.168.0.109*** there in VirtualBox were built two VMs w
 
 On the ***gateway*** machine there was installed ***isc-dhcp-server*** that [is listening on the Internal interface](screenchots/003.JPG) with the simple [dhcpd.conf](screenshot/004.JPG) configuration file.
 
-After running the ```netplan apply``` command on the ***localmachine*** network interface was provided with IP address ***192.168.23.20*** and [other settings](screenshots/005.JPG)
+After running the ```netplan apply``` command on the ***localmachine*** network interface was provided with IP address ***192.168.23.20*** and [other network settings](screenshots/005.JPG)
+As result the ***gateway*** IP address ***192.168.23.1*** [is pingable](screenshots/005.JPG) from the ***localmachine***
 
 
 
-
-1. Create virtual machines connection according to figure 1:VM1VM2HOSTINTERNETFigure 1 – VMs connection
-
-2. VM2 has one interface (internal), VM1 has 2 interfaces (NAT and internal). Configure  all networkinterfaces in order to make VM2 has an access to the Internet (iptables, forward, masquerade).   
 
 3. Check the route from VM2 to Host.
 
