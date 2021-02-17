@@ -4,21 +4,21 @@
 On the ***host machine 192.168.0.109*** there in VirtualBox were built two VMs with Ubuntu 18.4 onboard:
 
 1. ***gateway*** with [two network interfaces](screenshots/001.JPG):
-  - NAT adapter with IP ***10.0.2.15*** that was assigned by dhcp and where 22 port is being forwrded to 27517 port of host machine 
-  - Internal adapter with manually [by netplan](screenshots/002.JPG) configured ***192.168.23.1*** IP address
+  - NAT adapter with IP ***10.0.2.15*** that was assigned by dhcp (there was configured port forwarding and 22 port was being forwarded to 27517 port of host machine)
+  - Internal adapter with ***192.168.23.1*** IP address that was configured manually [by netplan](screenshots/002.JPG)
 
-2. ***localmachine*** with one Internal adapter that configured to get IP address via DHCP
+2. ***localmachine*** with one Internal adapter that was configured to get IP address via DHCP
 
 
-On the ***gateway*** machine there was installed ***isc-dhcp-server*** that [is listening on the Internal interface](screenchots/003.JPG) with the simple [dhcpd.conf](screenshot/004.JPG) configuration file.
+On the ***gateway*** machine there was installed ***isc-dhcp-server*** that [was listening on the Internal interface](screenchots/003.JPG) and had a simple [dhcpd.conf](screenshot/004.JPG) configuration file.
 
 After running the ```netplan apply``` command on the ***localmachine*** network interface was provided with IP address ***192.168.23.20*** and [other network settings.](screenshots/005.JPG)
 
-As result the ***gateway*** IP address ***192.168.23.1*** [was got pingable](screenshots/005.JPG) from the ***localmachine***
+As result the ***gateway*** IP address ***192.168.23.1*** [got pingable](screenshots/005.JPG) from the ***localmachine***
 
 On the ***gateway*** there was enabled forwarding by uncommenting the ```net.ipv4.ip_forward = 1``` string in ***/etc/sysctl.conf*** file, server was rebooted
 
-After running the ```iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE``` rule on the ***gateway*** Internet was got accesible from the ***localmachine*** server:
+After running the ```iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE``` rule on the ***gateway*** Internet got accesible from the ***localmachine*** server:
 
 
 - Route from ***localmachine*** to ***Host***:
@@ -46,14 +46,14 @@ rtt min/avg/max/mdev = 32.161/37.156/43.655/4.811 ms
 root@localmachine:~#
 ```
 
-- Determine, which  resource has an IP address 8.8.8.8
+- IP address 8.8.8.8 had resource
 ```
 root@localmachine:~# host 8.8.8.8
 8.8.8.8.in-addr.arpa domain name pointer dns.google.
 root@localmachine:~#
 ```
 
-- Determine, which  IP address belongs to resource epam.com.
+- epam.com was resolwing to IP address
 ```
 root@localmachine:~# dig +short epam.com
 3.214.134.159
@@ -61,12 +61,10 @@ root@localmachine:~#
 ```
 
 
-- Determine the default gateway for your HOST and display routing table.
-
-By running the ```netstat -r``` command on the ***Host*** machine there was determined the [routing table](screenshots/006.JPG) and that default gateway is ***192.168.0.1***
+- By running the ```netstat -r``` command on the ***Host*** machine there was determined the [routing table](screenshots/006.JPG) and also determined that default gateway was ***192.168.0.1***
 
 
-- Trace the route from the ***localmachine*** to google.com. 
+- Route from the ***localmachine*** to google.com. 
 ```
 traceroute to google.com (216.58.215.78), 30 hops max, 60 byte packets
  1  192.168.23.1  0.405 ms  0.386 ms  0.284 ms
