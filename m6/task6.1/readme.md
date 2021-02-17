@@ -62,7 +62,8 @@ root@localmachine:~#
 
 
 - Determine the default gateway for your HOST and display routing table.
-By running the ```netstat -r``` command on the ***Host*** machine there was determined the [routing table](screenshot/006.JPG) and that default gateway is ***192.168.0.1***
+
+By running the ```netstat -r``` command on the ***Host*** machine there was determined the [routing table](screenshots/006.JPG) and that default gateway is ***192.168.0.1***
 
 
 - Trace the route from the ***localmachine*** to google.com. 
