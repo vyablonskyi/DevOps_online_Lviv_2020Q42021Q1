@@ -2,15 +2,26 @@
 
 function nmapcheck(){
   nmap -v > /dev/null 2>&1
-  if [[ "$?" -gt 0 ]];
+  if [[ "$?" -gt 0 ]]
+  then
+    if [ -e /etc/debian_version ]
     then
-      if [ -e /etc/debian_version ]
-        then
-          sudo apt-get -y install nmap> /dev/null 2>&1
-        elif [ -e /etc/redhat-release ]
-          then
-            yum -y install nmap > /dev/null 2>&1
+      sudo apt-get update -y > /dev/null 2>&1
+      sudo apt-get install nmap -y > /dev/null 2>&1
+      if [[ "$?" -gt 0 ]]
+      then
+        printf "\ntPlease install nmap on this machine\n"
+        exit 1
       fi
+    elif [ -e /etc/redhat-release ]
+    then
+      sudo yum -y install nmap > /dev/null 2>&1
+       if [[ "$?" -gt 0 ]]
+       then
+         printf "\ntPlease install nmap on this machine\n"
+         exit 1
+       fi
+    fi
   fi
 }
 
@@ -31,16 +42,16 @@ function showports(){
 }
 
 if  [ "$#" == "0" ]
-  then
-    wrong
-  else
-    nmapcheck
-    case $1 in
-       --all) showhosts $2
-       ;;
-       --target) showports $2
-       ;;
-       *) wrong
-       ;;
-     esac
+then
+  wrong
+else
+  nmapcheck
+  case $1 in
+    --all) showhosts $2
+    ;;
+    --target) showports $2
+    ;;
+    *) wrong
+    ;;
+  esac
 fi
