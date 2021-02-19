@@ -61,6 +61,9 @@ else
   esac
 fi
 ```
+According to [results](screenshots/001.JPG) ***script1.sh is working as expected***.
+
+
 
 B. Using Apache log example create a script to answer the following questions:
 1. From which ip were the most requests?
