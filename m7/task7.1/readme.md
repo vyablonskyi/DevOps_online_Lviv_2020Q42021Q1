@@ -64,14 +64,75 @@ fi
 According to [results](screenshots/001.JPG) ***script1.sh is working as expected***.
 
 
+[Script2.sh](script2.sh) analises apache access log and provides with the information about most active client and requested page, list of activity of all clients, non-existed requested pages, hour of the most activity and list of the bots:
+```
+#!/bin/bash
 
-B. Using Apache log example create a script to answer the following questions:
-1. From which ip were the most requests?
-2. What is the most requested page?
-3. How many requests were there from each ip?
-4. What non-existent pages were clients referred to?
-5. What time did site get the most requests?
-6. What search bots have accessed the site? (UA + IP)
+function wrong(){
+  printf "\nPlease run the script with link to existed apache log file as first parameter:\n"
+  printf "\n./script2.sh <path to the log file>\n\n"
+  exit 1
+}
+
+function activeip(){
+  printf "\nThe most active IP address was:\n"
+  cat $1 |  awk '{print $1}' | sort | uniq -c | sort -n | tail -1 |awk '{print $2}'
+}
+
+function popularpage(){
+  printf "\nThe most popular webpage was:\n"
+  cat $1 | awk '{print $7}' | sort | uniq -c | sort -n | tail -1 | awk '{print $2}'
+}
+
+function ipactivity(){
+  printf "\nList of active IP addresses and count of requests from them:\n"
+  cat $1 |  awk '{print $1}' | sort | uniq -c | sort -nr
+}
+
+function nonexist(){
+  printf "\nList of non-existed requested pages:\n"
+  cat $1 | awk '{print $7,$9}' | grep 404 | sort | uniq -c |  awk '{print $2}'
+}
+
+function activetime(){
+  b=$(cat $1 | awk '{print $4}' | cut -d: -f2 | sort | uniq -c | sort -n | tail -1 | awk '{print $2}')
+  if [ "$b" == 23 ]
+  then
+    e=0
+  else
+    e=$((b+1))
+  fi
+  printf "\nTime of the most load was\n"
+  printf "between $b:00 and $e:00\n"
+}
+
+function searchbots(){
+  printf "\nList of searchbots:\n"
+  cat $1 | awk '{ for ( n=1; n<=NF; n++ ) if ( ($n ~ "[Bb]ot/" || $n ~ "[Bb]ot$" ) && $n !~ "http" ) print $1,$n }' | sort | uniq
+}
+
+
+if  [ "$#" == "0" ]
+then
+  wrong
+else
+  if [ -e  "$1" ]
+  then
+    activeip $1
+    popularpage $1
+    ipactivity $1
+    nonexist $1
+    activetime $1
+    searchbots $1
+  else
+    wrong
+  fi
+fi
+```
+
+According to [results](results.txt) that were got by running the ```./script2.sh example_log.log > results.txt``` ***script2.sh is working as expected***.
+
+
 
 
 C. Create a data backup script that takes the following data as parameters:
