@@ -134,8 +134,97 @@ According to [results](results.txt) that were got by running the ```./script2.sh
 
 
 
+[Script3.sh](script3.sh) makes copy of data from the source foled to destination folder and save information about all changes in /var/log/backupscr.log file:
+'''
+#!/bin/bash
 
-C. Create a data backup script that takes the following data as parameters:
-1. Path to the syncing directory.
-2. The path to the directory where the copies of the files will be stored.
-In case of adding new or deleting old files, the script must add a corresponding entry to the log file indicating the time, type of operation and file name. [The command to run the script must be added to crontab with a run frequency of one minute]
+backupfile=/var/log/backupscr.log
+
+function wrongp(){
+  printf "\nPlease run the script with the following parameters:\n"
+  printf "\n<source folder>        - data from this folder should be copied\n"
+  printf "\n<destination folder>   - data from the source folder should be stored here\n\n"
+}
+
+
+if  [ "$#" != "2"  ]
+then
+  wrongp
+  exit 1
+else
+  if [ ! -e $1 ]
+  then
+    printf "\nSource folder doesn't exist\n"
+    wrongp
+    exit 1
+  elif [ ! -e $2 ]
+  then
+    printf "\nDestination folder doesn't exist, please create the foolder manually\n "
+    wrongp
+    exit 1
+  elif [[ "$2" == *"$1"* ]]
+  then
+    printf "\nSousce and Destination folders can't be equal and destination can't be inside source tree\n"
+    wrongp
+    exit 1
+  fi
+fi
+
+if [ ! -e "backup.log" ]
+then
+  touch backup.log
+fi
+
+echo "$(date) backup script is being run"  >> "$backupfile"
+
+basepath=$(pwd)
+cd $1
+srcdir=$(pwd)
+cd $basepath
+cd $2
+destdir=$(pwd)
+cd $srcdir
+
+for el in $(find ./*); do
+  el="${el:2}"
+  if [ -d $el ]
+  then
+    if [ ! -e "$destdir/$el" ]
+    then
+      mkdir "$destdir/$el"
+      echo "$(date) folder $el has been added to backup" >> "$backupfile"
+    fi
+  else
+    if [ ! -e "$destdir/$el" ]
+    then
+      cp "$el" "$destdir/$el"
+      touch -r "$el" "$destdir/$el"
+      echo "$(date) file $el has been added to backup" >> "$backupfile"
+    elif [[ $(date -r $el) != $(date -r $destdir/$el) ]]
+    then
+      cp "$el" "$destdir/$el"
+      touch -r "$el" "$destdir/$el"
+      echo "$(date) file $el has been chanaged" >> "$backupfile"
+    fi
+  fi
+done
+
+cd $destdir
+for el in $(find ./*); do
+  el="${el:2}"
+  if [ ! -e "$srcdir/$el" ]
+  then
+    rm -rf "$el"
+    echo "$(date) $el has been removed" >> "$backupfile"
+  fi
+done
+
+echo "$(date) backup script has been completed"  >> "$backupfile"
+'''
+For this script there was added the following task in server's crontab:
+```
+* * * * * /root/scripts/script3.sh /root/scripts /backup/scripts > /dev/null 2>&1
+```
+this task runs every minute and synchronize data in the original /root/scripts folder and backup /backup/scripts folder, all logs are being saved into /var/log/backupscr.log file
+
+According to [screenshot1](screenshots/002.JPG) and [screenshot2](screenshots/003.JPG)that were got by manually running the ```./script3.sh /root/scripts /backup/scripts``` command ***script3.sh is working as expected***.
