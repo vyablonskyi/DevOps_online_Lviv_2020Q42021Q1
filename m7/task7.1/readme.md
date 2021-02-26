@@ -135,7 +135,7 @@ According to [results](results.txt) that were got by running the ```./script2.sh
 
 
 [Script3.sh](script3.sh) makes copy of data from the source foled to destination folder and save information about all changes in /var/log/backupscr.log file:
-'''
+```
 #!/bin/bash
 
 backupfile=/var/log/backupscr.log
@@ -220,11 +220,13 @@ for el in $(find ./*); do
 done
 
 echo "$(date) backup script has been completed"  >> "$backupfile"
-'''
+```
+
 For this script there was added the following task in server's crontab:
 ```
 * * * * * /root/scripts/script3.sh /root/scripts /backup/scripts > /dev/null 2>&1
 ```
 this task runs every minute and synchronize data in the original /root/scripts folder and backup /backup/scripts folder, all logs are being saved into /var/log/backupscr.log file
+
 
 According to [screenshot1](screenshots/002.JPG) and [screenshot2](screenshots/003.JPG)that were got by manually running the ```./script3.sh /root/scripts /backup/scripts``` command ***script3.sh is working as expected***.
