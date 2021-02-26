@@ -61,7 +61,7 @@ else
   esac
 fi
 ```
-According to [results](screenshots/001.JPG) ***script1.sh is working as expected***.
+According to [results](screenshots/001.JPG) ***script1.sh works as expected***.
 
 
 [Script2.sh](script2.sh) analises apache access log and provides with the information about most active client and requested page, list of activity of all clients, non-existed requested pages, hour of the most activity and list of the bots:
@@ -130,7 +130,7 @@ else
 fi
 ```
 
-According to [results](results.txt) that were got by running the ```./script2.sh example_log.log > results.txt``` ***script2.sh is working as expected***.
+According to [results](results.txt) that were got by running the ```./script2.sh example_log.log > results.txt``` ***script2.sh works as expected***.
 
 
 
@@ -168,11 +168,6 @@ else
     wrongp
     exit 1
   fi
-fi
-
-if [ ! -e "backup.log" ]
-then
-  touch backup.log
 fi
 
 echo "$(date) backup script is being run"  >> "$backupfile"
@@ -221,6 +216,8 @@ done
 
 echo "$(date) backup script has been completed"  >> "$backupfile"
 ```
+According to [screenshot1](screenshots/002.JPG) and [screenshot2](screenshots/003.JPG) that were got by manually running the ```/root/scripts/script3.sh /root/scripts /backup/scripts``` command ***script3.sh works as expected***.
+
 
 For this script there was added the following task in server's crontab:
 ```
@@ -229,4 +226,3 @@ For this script there was added the following task in server's crontab:
 this task runs every minute and synchronize data in the original /root/scripts folder and backup /backup/scripts folder, all logs are being saved into /var/log/backupscr.log file
 
 
-According to [screenshot1](screenshots/002.JPG) and [screenshot2](screenshots/003.JPG)that were got by manually running the ```./script3.sh /root/scripts /backup/scripts``` command ***script3.sh is working as expected***.
