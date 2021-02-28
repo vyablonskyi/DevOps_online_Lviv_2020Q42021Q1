@@ -15,7 +15,7 @@ def fizzbuzz(x):
     else:
         return ''
 ```
-this function has been used as imoprted in the test [script1.py](script1.py)
+this function has been used as imported in the test [script1.py](script1.py)
 
 Results of running this script you may see [here](screenshots/001.JPG)
 
@@ -47,10 +47,15 @@ class TestFizzbuzz(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
 ```
+
 Results of running this script you may see [here](screenshots/002.JPG)
 
 
 
 **2**
 
-Develop count_vowels function for counting vowels in input text.Example of usage: count_vowels(annnmemmmtlo) = 3count_vowels(kj  js)=
+As part of the [script2.py](script2.py) there was written the ***count_vowels*** function:
+```
+```
+
+Results of running this script you may see [here](screenshots/003.JPG)
