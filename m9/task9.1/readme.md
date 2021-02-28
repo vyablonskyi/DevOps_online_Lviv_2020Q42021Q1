@@ -1,5 +1,22 @@
-1. Develop fizzbuzz function for list of numbers from 1 to 100. (Check in Jupyter)
-If number divided by 3 without rest, print “Fizz”, If number divided by 5 without rest, print “Buzz”, If number divided by 3 and 5 without rest, print “FizzBuzz”.
+**1**
+
+The "fizzbuzz" functon has been written:
+```
+def fizzbuzz(x):
+    if x%3==0:
+        if x%5==0:
+            return 'FizzBuzz'
+        else:
+            return 'Fizz'
+    elif x%5==0:
+        return 'Buzz'
+    else:
+        return ''
+```
+and implemented in the [script1.py](script1.py)
+
+Results of running this script you may see [here](screenshots/001.JPG)
+
 
 1* Make unit tests for your new FizzBuzz function.
 
