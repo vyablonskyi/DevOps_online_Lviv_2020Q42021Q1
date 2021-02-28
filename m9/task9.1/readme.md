@@ -1,7 +1,9 @@
 **1**
 
-The "fizzbuzz" functon has been written:
+The "fizzbuzz" functon has been written and saved in [fizzbuzz.py](fizzbuzz.py) file:
 ```
+#!/usr/bin/python3
+
 def fizzbuzz(x):
     if x%3==0:
         if x%5==0:
@@ -13,7 +15,7 @@ def fizzbuzz(x):
     else:
         return ''
 ```
-and implemented in the [script1.py](script1.py)
+this function has been used as imoprted in the test [script1.py](script1.py)
 
 Results of running this script you may see [here](screenshots/001.JPG)
 
