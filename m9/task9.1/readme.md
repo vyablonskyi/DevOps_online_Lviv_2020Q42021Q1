@@ -56,6 +56,13 @@ Results of running this script you may see [here](screenshots/002.JPG)
 
 As part of the [script2.py](script2.py) there was written the ***count_vowels*** function:
 ```
+def count_vowels (t):
+    vowels = ('a','A','e','E','i','I','o','O','u','U')
+    i=0
+    for el in t:
+        if el in vowels:
+            i+=1
+    return i
 ```
 
 Results of running this script you may see [here](screenshots/003.JPG)
